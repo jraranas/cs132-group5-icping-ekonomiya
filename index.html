@@ -108,13 +108,68 @@ footer{max-width:900px;margin:3rem auto;padding:1.5rem 1.25rem;border-top:1px so
 </section>
 
 <section id="approach">
-  <h2>Proposed approach</h2>
-  <div class="note">Draft: your deck does not describe the analysis methods yet. Confirm or replace these with your group's actual plan.</div>
+  <h2>Proposed Approach</h2>
+  <div class="note"></div>
   <ul>
-    <li><strong>Derived fields.</strong> Peso depreciation (%) is computed from the monthly average USD/PHP rate, and inflation (%) is computed from the CPI values, per region and item.</li>
-    <li><strong>RQ1.</strong> Relate depreciation to CPI growth at the national level, including lagged depreciation, since price effects may appear after a delay.</li>
-    <li><strong>RQ2.</strong> Compare CPI growth across the 18 regions during depreciation periods and test whether differences are statistically significant.</li>
-    <li><strong>RQ3.</strong> Compare the response of the 13 food categories to depreciation, including how quickly each responds.</li>
+    <li>
+      <strong>Data Preparation and Derived Fields.</strong>
+      Clean and integrate the PSA CPI and BSP exchange-rate data by region, item, and month. 
+      Compute <strong>Peso Depreciation (%)</strong> from the monthly average USD/PHP exchange rate 
+      and <strong>Inflation (%)</strong> from the CPI values.
+    </li>
+
+    <li>
+      <strong>Descriptive Statistics.</strong>
+      Summarize the dataset using measures such as the 
+      <strong>mean, median, standard deviation, minimum, and maximum</strong> 
+      for CPI growth, Food CPI/inflation, and peso depreciation. 
+      We will also summarize these measures by <strong>region, food category, and time period</strong> 
+      to establish the overall patterns in the data.
+    </li>
+
+    <li>
+      <strong>Exploratory Data Analysis.</strong>
+      Use <strong>time-series plots, regional comparisons, and scatter plots</strong> 
+      to visualize trends in peso depreciation and CPI growth, identify regional and 
+      food-category differences, and examine the apparent relationship between depreciation 
+      and inflation before conducting hypothesis tests.
+    </li>
+
+    <li>
+      <strong>Statistical Assumption Checks.</strong>
+      Check the relevant assumptions for the planned statistical tests, including 
+      <strong>normality</strong> and the presence of potential outliers. 
+      The results of these checks will determine whether a <strong>parametric or non-parametric</strong> 
+      statistical test is appropriate.
+    </li>
+
+    <li>
+      <strong>RQ1 — National Relationship.</strong>
+      Examine the statistical relationship between <strong>peso depreciation and overall CPI growth</strong> 
+      at the national level using correlation analysis. 
+      We will also examine <strong>lagged depreciation</strong> to determine whether changes in the 
+      exchange rate are associated with CPI changes after a delay.
+    </li>
+
+    <li>
+      <strong>RQ2 — Regional Differences.</strong>
+      Compare <strong>CPI growth across the 18 Philippine regions</strong> during periods of peso depreciation 
+      and statistically test whether the observed regional differences are significant.
+    </li>
+
+    <li>
+      <strong>RQ3 — Food Category Response.</strong>
+      Examine how the <strong>13 food categories</strong> respond to peso depreciation, 
+      comparing the magnitude and timing of their inflation responses to determine whether 
+      some categories respond differently or more quickly than others.
+    </li>
+
+    <li>
+      <strong>Hypothesis Testing and Interpretation.</strong>
+      Report the appropriate <strong>test statistic, p-value, effect or relationship measure, 
+      and confidence interval where applicable</strong>. Results will be interpreted in relation 
+      to the research questions without treating statistical association as proof of causation.
+    </li>
   </ul>
 </section>
 
