@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unequal Prices? | CS 132 Group 5</title>
+<style>
+:root{--bg:#f2f5f6;--ink:#1c2733;--muted:#5a6773;--line:#cfd8dc;--accent:#0b6e6e;--panel:#ffffff;--note:#fff4d6}
+@media (prefers-color-scheme:dark){:root{--bg:#10171c;--ink:#e6edf1;--muted:#9aa8b3;--line:#2a3640;--accent:#4fc3c3;--panel:#18222a;--note:#3a3216}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+nav{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);padding:.8rem 1.25rem;display:flex;gap:1.25rem;flex-wrap:wrap;z-index:5}
+nav a{color:var(--ink);text-decoration:none;font-size:.95rem}
+nav a:hover,nav a:focus-visible{color:var(--accent);text-decoration:underline}
+header,main{max-width:900px;margin:0 auto;padding:0 1.25rem}
+header{padding-top:3rem;padding-bottom:1rem}
+h1{font:700 2.6rem/1.15 Georgia,serif;margin:0 0 .5rem}
+.sub{font:italic 1.3rem/1.4 Georgia,serif;color:var(--muted);margin:0 0 1rem}
+.meta{color:var(--muted);font-size:.95rem}
+h2{font:700 1.7rem/1.2 Georgia,serif;margin:3rem 0 1rem;padding-top:1.5rem;border-top:2px solid var(--accent)}
+h3{font-size:1.1rem;margin:1.75rem 0 .5rem}
+p{max-width:70ch}
+.stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
+.stat{background:var(--panel);border:1px solid var(--line);padding:.9rem 1.1rem;min-width:150px}
+.stat b{display:block;font:700 1.8rem Georgia,serif;color:var(--accent)}
+.rq,.hyp{background:var(--panel);border-left:4px solid var(--accent);padding:.9rem 1.2rem;margin:.9rem 0}
+.rq b,.hyp b{display:block;margin-bottom:.2rem}
+.hyp p{margin:.3rem 0}
+.note{background:var(--note);border:1px solid var(--line);padding:.8rem 1rem;margin:1rem 0;font-size:.95rem}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--panel);font-size:.92rem}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--bg)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:.7rem 1.2rem;text-decoration:none;font-weight:600}
+@media (prefers-color-scheme:dark){.btn{color:#10171c}}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+ol,ul{max-width:70ch}
+footer{max-width:900px;margin:3rem auto;padding:1.5rem 1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (max-width:600px){h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#background">Background</a>
+  <a href="#questions">Research questions</a>
+  <a href="#hypotheses">Hypotheses</a>
+  <a href="#approach">Approach</a>
+  <a href="#data">Data</a>
+  <a href="#sheet">Google Sheet</a>
+  <a href="#team">Team</a>
+</nav>
+
+<header id="home">
+  <h1>Unequal Prices?</h1>
+  <p class="sub">Analyzing the impact of currency depreciation on regional inflation in the Philippines</p>
+  <p class="meta">CS 132 · Group 5 · ICPING EKONOMIYA · SDG 8: Decent Work and Economic Growth</p>
+  <div class="stats">
+    <div class="stat"><b>56</b>months, Jan 2022 – Aug 2026</div>
+    <div class="stat"><b>18</b>administrative regions</div>
+    <div class="stat"><b>14</b>CPI items (All Items + 13 food categories)</div>
+    <div class="stat"><b>14,112</b>panel observations</div>
+  </div>
+</header>
+
+<main>
+<section id="background">
+  <h2>Background and motivation</h2>
+  <p>The peso is not stable against the US dollar. In our dataset, the monthly average rate moved from about ₱51.2 per USD in January 2022 to about ₱61.4 per USD in May 2026. A weaker peso makes imported goods and imported inputs, such as fuel, fertilizer, and feed, more expensive, and that cost can pass through to consumer prices.</p>
+  <p>That pass-through may not be even. The Philippines is an archipelago, and goods reach different regions through different inter-island supply chains. Two regions facing the same exchange-rate shock could therefore see different price increases. National inflation figures hide this difference.</p>
+  <p>This project investigates how national exchange-rate volatility translates into unequal price burdens across the 18 administrative regions. It connects to SDG 8 because currency shocks and inflation affect macroeconomic stability and how evenly economic development reaches different parts of the country.</p>
+
+  <h3>What we propose</h3>
+  <p>We build a regional panel dataset that joins monthly PHP/USD exchange rates from the Bangko Sentral ng Pilipinas (BSP) with monthly regional Consumer Price Index (CPI) data from the Philippine Statistics Authority (PSA). We then compare how CPI responds to peso depreciation overall, across regions, and within food categories.</p>
+</section>
+
+<section id="questions">
+  <h2>Research questions</h2>
+  <div class="rq"><b>RQ1</b>What is the statistical relationship between the rate of peso depreciation and the overall growth of the Philippine Consumer Price Index (CPI)?</div>
+  <div class="rq"><b>RQ2</b>Is there a significant difference in how peso depreciation impacts the CPI across different regions in the Philippines?</div>
+  <div class="rq"><b>RQ3</b>How does peso depreciation affect the Food CPI as a whole?</div>
+</section>
+
+<section id="hypotheses">
+  <h2>Research hypotheses</h2>
+  <div class="hyp"><b>RQ1</b>
+    <p><strong>H₀:</strong> Peso depreciation does not correspond to a systematic change in the growth rate of the Philippine Consumer Price Index (CPI).</p>
+    <p><strong>H₁:</strong> Peso depreciation corresponds to a systematic change in the growth rate of the Philippine Consumer Price Index (CPI).</p>
+  </div>
+  <div class="hyp"><b>RQ2</b>
+    <p><strong>H₀:</strong> There is no significant difference in the magnitude of CPI increase across different regions in the Philippines during periods of peso depreciation.</p>
+    <p><strong>H₁:</strong> Some regions experience a significantly higher increase in CPI compared to others during periods of peso depreciation, due to higher inter-island logistics sensitivity.</p>
+  </div>
+  <div class="hyp"><b>RQ3</b>
+    <p><strong>H₀:</strong> Food CPI responds at a similar rate following peso depreciation.</p>
+    <p><strong>H₁:</strong> Food CPI responds at different rates following peso depreciation.</p>
+  </div>
+
+  <h3>Objectives</h3>
+  <ol>
+    <li>Construct a dataset of PHP/USD exchange rates and monthly regional CPI data from 2022 to 2026 across all 18 administrative regions.</li>
+    <li>Compare the magnitude of CPI growth across regions during periods of peso depreciation.</li>
+    <li>Evaluate price response rates and trends within the Food CPI category following peso depreciation.</li>
+  </ol>
+</section>
+
+<section id="approach">
+  <h2>Proposed approach</h2>
+  <div class="note">Draft: your deck does not describe the analysis methods yet. Confirm or replace these with your group's actual plan.</div>
+  <ul>
+    <li><strong>Derived fields.</strong> Peso depreciation (%) is computed from the monthly average USD/PHP rate, and inflation (%) is computed from the CPI values, per region and item.</li>
+    <li><strong>RQ1.</strong> Relate depreciation to CPI growth at the national level, including lagged depreciation, since price effects may appear after a delay.</li>
+    <li><strong>RQ2.</strong> Compare CPI growth across the 18 regions during depreciation periods and test whether differences are statistically significant.</li>
+    <li><strong>RQ3.</strong> Compare the response of the 13 food categories to depreciation, including how quickly each responds.</li>
+  </ul>
+</section>
+
+<section id="data">
+  <h2>Dataset</h2>
+
+  <h3>Sources</h3>
+  <table>
+    <tr><th>Source</th><th>Content</th><th>Access</th></tr>
+    <tr><td>Bangko Sentral ng Pilipinas (BSP)</td><td>Monthly reference exchange rate bulletins (PHP per USD), used to measure peso depreciation, 2022–2026</td><td>Downloadable from the BSP Statistics Database</td></tr>
+    <tr><td>Philippine Statistics Authority (PSA) OpenStat</td><td>Monthly regional CPI tables for All Items and Food categories, all 18 administrative regions</td><td>Downloadable from the PSA OpenStat portal</td></tr>
+  </table>
+  <p>The CPI follows the PSA's 2018-based series: 2018 is the base year and the index is set to 100. CPI values are index points, not pesos.</p>
+
+  <h3>Collection process and sampling</h3>
+  <p>We did not collect prices ourselves. The underlying figures come from the agencies' own collection: the PSA's retail price surveys and the BSP's tracking of interbank foreign exchange, which produces daily reference rates. We extracted the published data as two raw Excel spreadsheets, one per source, and integrated them into one dataset. No sampling was applied. We use all available monthly observations for all 18 regions and all 14 items from January 2022 to August 2026.</p>
+
+  <h3>Size</h3>
+  <table>
+    <tr><th>Measure</th><th>Value</th></tr>
+    <tr><td>Time coverage</td><td>56 months (Jan 2022 – Aug 2026)</td></tr>
+    <tr><td>Regions</td><td>18</td></tr>
+    <tr><td>Items</td><td>14 (All Items + 13 food categories)</td></tr>
+    <tr><td>Total observations</td><td>14,112 (18 regions × 14 items × 56 months)</td></tr>
+    <tr><td>Currently usable observations</td><td>13,356</td></tr>
+    <tr><td>Unavailable observations</td><td>756 (BSP exchange rates not yet released for June–August 2026)</td></tr>
+  </table>
+  <p>Unreleased BSP values are kept as NA. They are not estimated or imputed.</p>
+
+  <h3>Preprocessing</h3>
+  <ol>
+    <li><strong>Structural cleaning and unpivoting.</strong> The raw spreadsheets were reshaped into long format with one row per region, item, and month (18 regions × 14 items).</li>
+    <li><strong>Key and string normalization.</strong> Temporal keys (year and month) and text labels were normalized across the 56 monthly periods so the two sources could be joined.</li>
+    <li><strong>Relational integration.</strong> The monthly average USD/PHP rate was attached to every region–item–month row, producing 14,112 panel records.</li>
+    <li><strong>Calculated fields.</strong> Food inflation (%) and peso depreciation (%) are derived from the CPI and exchange-rate columns.</li>
+  </ol>
+
+  <h3>Quality checks</h3>
+  <div class="scroll"><table>
+    <tr><th>Check</th><th>What we verified</th><th>Result</th></tr>
+    <tr><td>Completeness</td><td>Missing CPI observations</td><td>No missing CPI values</td></tr>
+    <tr><td>Exchange-rate availability</td><td>BSP exchange-rate fields</td><td>756 observations unavailable because of unreleased BSP data (limitation)</td></tr>
+    <tr><td>Duplicate records</td><td>Duplicate region × item × month combinations</td><td>0 duplicates</td></tr>
+    <tr><td>Time coverage</td><td>Monthly observations, Jan 2022 – Aug 2026</td><td>56 months</td></tr>
+    <tr><td>Geographic coverage</td><td>All regional entries</td><td>18 regions</td></tr>
+    <tr><td>Category consistency</td><td>CPI item and category labels</td><td>Consistent across the dataset</td></tr>
+  </table></div>
+
+  <h3>Sample rows</h3>
+  <div class="scroll"><table>
+    <tr><th>Region</th><th>Item</th><th>Year</th><th>Month</th><th>CPI value</th><th>USD/PHP average</th></tr>
+    <tr><td>National Capital Region (NCR)</td><td>0 - ALL ITEMS</td><td>2022</td><td>Jan</td><td class="n">108.8</td><td class="n">51.2353</td></tr>
+    <tr><td>National Capital Region (NCR)</td><td>01.1.1.1 - Cereals (ND)</td><td>2022</td><td>Jan</td><td class="n">97.4074</td><td class="n">51.2353</td></tr>
+    <tr><td>CAR</td><td>01.1.2 - Meat and other parts of slaughtered land animals (ND)</td><td>2022</td><td>Jan</td><td class="n">125.6</td><td class="n">51.2353</td></tr>
+    <tr><td>Region I (Ilocos Region)</td><td>01.1.3 - Fish and other seafood (ND)</td><td>2022</td><td>Jan</td><td class="n">123.8</td><td class="n">51.2353</td></tr>
+  </table></div>
+</section>
+
+<section id="sheet">
+  <h2>Google Sheet</h2>
+  <p>The full merged dataset is available as a Google Sheet.</p>
+  <p><a class="btn" href="https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?usp=sharing" target="_blank" rel="noopener">Open the dataset in Google Sheets</a></p>
+</section>
+
+<section id="team">
+  <h2>Team</h2>
+  <p>CS 132, Group 5 (ICPING EKONOMIYA)</p>
+  <ul>
+    <li>John Ray Aranas</li>
+    <li>Sophia Reizel Bonitez</li>
+    <li>Paula Marie Tagle</li>
+  </ul>
+  <h3>References</h3>
+  <ol>
+    <li>Bangko Sentral ng Pilipinas. Statistics Database: reference exchange rate bulletins. <a href="https://www.bsp.gov.ph">bsp.gov.ph</a></li>
+    <li>Philippine Statistics Authority. OpenStat: Consumer Price Index (2018=100), by region. <a href="https://openstat.psa.gov.ph">openstat.psa.gov.ph</a></li>
+    <li>United Nations. Sustainable Development Goal 8: Decent work and economic growth. <a href="https://sdgs.un.org/goals/goal8">sdgs.un.org/goals/goal8</a></li>
+  </ol>
+</section>
+</main>
+<footer>CS 132 · Group 5 · ICPING EKONOMIYA</footer>
+</body>
+</html>
