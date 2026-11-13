@@ -1156,28 +1156,82 @@
 
     <!-- ================= 9. MEET THE TEAM SECTION (#team) ================= -->
     <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-                <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">CS 132 • Group 5</div>
-                <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
-                    Meet the Team
-                </h2>
-                <div class="dot-divider">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+        <div class="mb-10">
+            <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">CS 132 • Group 5</div>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+                Meet the Team
+            </h2>
+            <div class="dot-divider">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-
-            <button onclick="openTeamModal()" class="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-500/30 text-xs font-mono font-semibold transition-all">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>Customize Group 5 Names & Links</span>
-            </button>
         </div>
 
-        <!-- Team Member Cards Grid (Inspired by https://overdrivengain.github.io/cs132-portfolio/#team) -->
-        <div id="teamGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Populated dynamically by JS with default CS 132 Group 5 members & editable via Modal -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 p-[2px] shadow-lg">
+                            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-display font-extrabold text-lg text-white">
+                                JA
+                            </div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
+                            Group 5
+                        </span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors">
+                        John Ray Aranas
+                    </h3>
+                    <div class="text-xs font-mono text-teal-400 mt-0.5 mb-3">ICPING EKONOMIYA</div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80">
+                    <span class="text-[11px] font-mono text-slate-500">UP Diliman • CS 132</span>
+                </div>
+            </div>
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-purple-600 p-[2px] shadow-lg">
+                            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-display font-extrabold text-lg text-white">
+                                SB
+                            </div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
+                            Group 5
+                        </span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors">
+                        Sophia Reizel Bonitez
+                    </h3>
+                    <div class="text-xs font-mono text-teal-400 mt-0.5 mb-3">ICPING EKONOMIYA</div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80">
+                    <span class="text-[11px] font-mono text-slate-500">UP Diliman • CS 132</span>
+                </div>
+            </div>
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-indigo-600 p-[2px] shadow-lg">
+                            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-display font-extrabold text-lg text-white">
+                                PT
+                            </div>
+                        </div>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
+                            Group 5
+                        </span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors">
+                        Paula Marie Tagle
+                    </h3>
+                    <div class="text-xs font-mono text-teal-400 mt-0.5 mb-3">ICPING EKONOMIYA</div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80">
+                    <span class="text-[11px] font-mono text-slate-500">UP Diliman • CS 132</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1198,33 +1252,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ================= CUSTOMIZE TEAM MODAL ================= -->
-    <div id="teamModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-                <div>
-                    <h3 class="font-display font-bold text-lg text-white">Edit CS 132 Group 5 Team Roster</h3>
-                    <p class="text-xs text-slate-400">Update member names, roles, bios, and GitHub/LinkedIn links (saved in your browser).</p>
-                </div>
-                <button onclick="closeTeamModal()" class="text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <div id="teamFormContainer" class="space-y-4 my-5"></div>
-
-            <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                <button onclick="resetTeamDefaults()" class="text-xs font-mono text-slate-400 hover:text-rose-400">
-                    Reset to Default
-                </button>
-                <div class="flex items-center gap-3">
-                    <button onclick="closeTeamModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-mono">Cancel</button>
-                    <button onclick="saveTeamRoster()" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs font-mono">Save Roster</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ================= JAVASCRIPT: CHARTS, INTERACTIVITY & STATE ================= -->
     <script>
@@ -1899,156 +1926,6 @@
         fxSlider.addEventListener('input', updateSimulator);
 
         // ============================================================================
-        // 4. TEAM ROSTER MANAGEMENT (INSPIRED BY #team ON CS 132 PORTFOLIO)
-        // ============================================================================
-        const defaultTeamRoster = [
-            {
-                name: 'Group 5 Researcher 1',
-                role: 'Macroeconomic & RQ1 Lead',
-                bio: 'Spearheaded national CPI and BSP PHP/USD Year-over-Year data alignment, Shapiro-Wilk diagnostics, and Spearman/OLS correlation modeling.',
-                github: 'https://github.com',
-                linkedin: 'https://linkedin.com',
-                badge: 'RQ1 • National CPI'
-            },
-            {
-                name: 'Group 5 Researcher 2',
-                role: 'Spatial & Regional Analysis Lead',
-                bio: 'Engineered the 18-region and 3-island-group pipeline (N=540 depreciation observations), Kruskal-Wallis H-tests, and regional error-bar visualizations.',
-                github: 'https://github.com',
-                linkedin: 'https://linkedin.com',
-                badge: 'RQ2 • 18 Regions'
-            },
-            {
-                name: 'Group 5 Researcher 3',
-                role: 'Food Pass-Through & Lag Modeler',
-                bio: 'Built the 13-subcategory composite Food CPI index, dynamic lag correlation structure (Lag 0m–6m), and downward price stickiness regime tests.',
-                github: 'https://github.com',
-                linkedin: 'https://linkedin.com',
-                badge: 'RQ3 • Food Lag'
-            },
-            {
-                name: 'Group 5 Researcher 4',
-                role: 'Data Visualization & Portfolio Lead',
-                bio: 'Designed the stacked Nutshell synthesis plot, statistical storytelling narrative, and interactive web portfolio architecture for CS 132.',
-                github: 'https://github.com',
-                linkedin: 'https://linkedin.com',
-                badge: 'Synthesis & UI'
-            }
-        ];
-
-        function getTeamRoster() {
-            try {
-                const saved = localStorage.getItem('cs132_group5_team');
-                return saved ? JSON.parse(saved) : defaultTeamRoster;
-            } catch (e) {
-                return defaultTeamRoster;
-            }
-        }
-
-        function renderTeamCards() {
-            const roster = getTeamRoster();
-            const grid = document.getElementById('teamGrid');
-            const avatarColors = [
-                'from-amber-500 to-rose-500',
-                'from-rose-500 to-purple-600',
-                'from-teal-400 to-indigo-600',
-                'from-indigo-500 to-amber-500'
-            ];
-
-            grid.innerHTML = roster.map((member, i) => {
-                const initials = member.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-                return `
-                    <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between group">
-                        <div>
-                            <div class="flex items-center justify-between mb-5">
-                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br ${avatarColors[i % avatarColors.length]} p-[2px] shadow-lg">
-                                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-display font-extrabold text-lg text-white">
-                                        ${initials}
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
-                                    ${member.badge}
-                                </span>
-                            </div>
-
-                            <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors">
-                                ${member.name}
-                            </h3>
-                            <div class="text-xs font-mono text-teal-400 mt-0.5 mb-3">${member.role}</div>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                ${member.bio}
-                            </p>
-                        </div>
-
-                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-slate-400">
-                            <span class="text-[11px] font-mono text-slate-500">UP Diliman • CS 132</span>
-                            <div class="flex items-center gap-3 text-sm">
-                                <a href="${member.github}" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub">
-                                    <i class="fa-brands fa-github"></i>
-                                </a>
-                                <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors" title="LinkedIn">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openTeamModal() {
-            const roster = getTeamRoster();
-            const container = document.getElementById('teamFormContainer');
-            container.innerHTML = roster.map((m, idx) => `
-                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-                    <div class="text-xs font-mono text-amber-400 font-bold">Member 0${idx + 1}</div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="text-[11px] font-mono text-slate-400">Full Name</label>
-                            <input type="text" id="team-name-${idx}" value="${m.name}" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">
-                        </div>
-                        <div>
-                            <label class="text-[11px] font-mono text-slate-400">Role / Title</label>
-                            <input type="text" id="team-role-${idx}" value="${m.role}" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-[11px] font-mono text-slate-400">Contribution Bio</label>
-                        <textarea id="team-bio-${idx}" rows="2" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">${m.bio}</textarea>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('teamModal').classList.remove('hidden');
-        }
-
-        function closeTeamModal() {
-            document.getElementById('teamModal').classList.add('hidden');
-        }
-
-        function saveTeamRoster() {
-            const roster = getTeamRoster();
-            const updated = roster.map((m, idx) => ({
-                ...m,
-                name: document.getElementById(`team-name-${idx}`).value || m.name,
-                role: document.getElementById(`team-role-${idx}`).value || m.role,
-                bio: document.getElementById(`team-bio-${idx}`).value || m.bio
-            }));
-            try {
-                localStorage.setItem('cs132_group5_team', JSON.stringify(updated));
-            } catch (e) {}
-            renderTeamCards();
-            closeTeamModal();
-        }
-
-        function resetTeamDefaults() {
-            try {
-                localStorage.removeItem('cs132_group5_team');
-            } catch (e) {}
-            renderTeamCards();
-            closeTeamModal();
-        }
-
-        // ============================================================================
         // 5. MOBILE MENU & SCROLLSPY ACTIVE LINKS
         // ============================================================================
         document.getElementById('mobileMenuBtn').addEventListener('click', () => {
@@ -2064,7 +1941,6 @@
         window.onload = function () {
             initPortfolioCharts();
             updateSimulator();
-            renderTeamCards();
         };
     </script>
 </body>
