@@ -144,6 +144,12 @@
         }
 
         /* Active Nav Link */
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
         .nav-link.active {
             color: #fbbf24;
             font-weight: 600;
@@ -175,52 +181,49 @@
                         <span class="font-mono font-bold text-lg text-amber-400 group-hover:scale-110 transition-transform">₱</span>
                     </div>
                 </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-display font-extrabold tracking-tight text-white text-sm sm:text-base">CS 132</span>
-                        <span class="text-[11px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold">Group 5</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400 hidden sm:block">FX Pass-Through & Philippine CPI Portfolio</p>
+                <div class="flex items-center gap-2">
+                    <span class="font-display font-extrabold tracking-tight text-white text-sm sm:text-base">CS 132</span>
+                    <span class="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold text-center inline-flex items-center justify-center">Group 5</span>
                 </div>
             </a>
 
             <!-- Desktop Navigation Links -->
-            <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-300">
-                <a href="#home" class="nav-link hover:text-amber-400 transition-colors py-1">Home</a>
-                <a href="#overview" class="nav-link hover:text-amber-400 transition-colors py-1">Overview</a>
-                <a href="#background" class="nav-link hover:text-amber-400 transition-colors py-1">Background</a>
-                <a href="#questions" class="nav-link hover:text-amber-400 transition-colors py-1">Research Questions</a>
-                <a href="#methods" class="nav-link hover:text-amber-400 transition-colors py-1">Data & Methods</a>
-                <a href="#results" class="nav-link hover:text-amber-400 transition-colors py-1">Results & EDA</a>
-                <a href="#nutshell" class="nav-link hover:text-amber-400 transition-colors py-1">Nutshell Plot</a>
-                <a href="#conclusion" class="nav-link hover:text-amber-400 transition-colors py-1">Conclusion</a>
-                <a href="#team" class="nav-link hover:text-amber-400 transition-colors py-1">Team</a>
+            <nav class="hidden lg:flex items-center justify-center gap-5 text-sm text-slate-300">
+                <a href="#home" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Home</a>
+                <a href="#overview" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Overview</a>
+                <a href="#background" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Background</a>
+                <a href="#questions" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Research Questions</a>
+                <a href="#methods" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Data & Methods</a>
+                <a href="#results" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Results & EDA</a>
+                <a href="#nutshell" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Nutshell Plot</a>
+                <a href="#conclusion" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Conclusion</a>
+                <a href="#team" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Team</a>
             </nav>
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-2">
-                <a href="#simulator" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3.5 py-2 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 transition-all">
+                <a href="#simulator" class="hidden sm:inline-flex items-center justify-center text-center gap-1.5 text-xs font-mono font-semibold px-3.5 py-2 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 transition-all">
                     <i class="fa-solid fa-sliders"></i>
                     <span>CPI Simulator</span>
                 </a>
                 <!-- Mobile Menu Toggle -->
-                <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white">
+                <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white inline-flex items-center justify-center">
                     <i class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Drawer -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-5 space-y-2 text-sm">
-            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Home</a>
-            <a href="#overview" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Overview</a>
-            <a href="#background" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Background</a>
-            <a href="#questions" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Research Questions & Hypotheses</a>
-            <a href="#methods" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Data & Methods</a>
-            <a href="#results" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Results & Interactive EDA</a>
-            <a href="#nutshell" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Nutshell Plot</a>
-            <a href="#conclusion" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Conclusion</a>
-            <a href="#team" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-amber-400 font-semibold">Meet the Team</a>
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-5 space-y-2 text-sm text-center">
+            <a href="#home" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Home</a>
+            <a href="#overview" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Overview</a>
+            <a href="#background" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Background</a>
+            <a href="#questions" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Research Questions & Hypotheses</a>
+            <a href="#methods" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Data & Methods</a>
+            <a href="#results" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Results & Interactive EDA</a>
+            <a href="#nutshell" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Nutshell Plot</a>
+            <a href="#conclusion" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Conclusion</a>
+            <a href="#team" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-amber-400 font-semibold">Meet the Team</a>
         </div>
     </header>
 
@@ -330,15 +333,20 @@
             <!-- Right Column: Problem & Solution Stacked Cards -->
             <div class="lg:col-span-5 space-y-5">
                 <div class="portfolio-card rounded-2xl p-6 border-l-4 border-l-rose-500">
-                    <div class="flex items-center gap-3 mb-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-400 flex items-center justify-center">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-400 flex items-center justify-center">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-white">Problem</h3>
                         </div>
-                        <h3 class="font-display font-bold text-lg text-white">Problem</h3>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-amber-500/15 text-amber-300 border border-amber-500/30">SDG 8</span>
                     </div>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        When the Philippine Peso depreciates against the US Dollar, households experience rising living costs. However, three empirical questions remain contested: (1) how strongly annual peso depreciation tracks national headline CPI, (2) whether inter-island shipping sensitivities cause unequal inflation spikes across Luzon, Visayas, and Mindanao, and (3) how many months it takes for FX shocks to hit retail Food CPI.
-                    </p>
+                    <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+                        <p>The peso is not stable against the US dollar. In our dataset, the monthly average rate moved from about ₱51.2 per USD in January 2022 to about ₱61.4 per USD in May 2026. A weaker peso makes imported goods and imported inputs, such as fuel, fertilizer, and feed, more expensive, and that cost can pass through to consumer prices.</p>
+                        <p>That pass-through may not be even. The Philippines is an archipelago, and goods reach different regions through different inter-island supply chains. Two regions facing the same exchange-rate shock could therefore see different price increases. National inflation figures hide this difference.</p>
+                        
+                    </div>
                 </div>
 
                 <div class="portfolio-card rounded-2xl p-6 border-l-4 border-l-teal-500">
@@ -346,10 +354,11 @@
                         <div class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-400 flex items-center justify-center">
                             <i class="fa-solid fa-chart-line"></i>
                         </div>
-                        <h3 class="font-display font-bold text-lg text-white">Solution</h3>
+                        <h3 class="font-display font-bold text-lg text-white">What we propose</h3>
                     </div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                        Using overlapping PSA Consumer Price Index and BSP PHP/USD exchange rate series (2022–2026), we conduct normality-guided non-parametric and parametric hypothesis testing (<strong class="text-white">Spearman ρ, Pearson r, Kruskal-Wallis H, One-Way ANOVA, and Lagged OLS Pass-Through Modeling</strong>) to isolate national, regional, and food-sector sensitivity.
+                        <p>This project investigates how national exchange-rate volatility translates into unequal price burdens across the 18 administrative regions. It connects to SDG 8 because currency shocks and inflation affect macroeconomic stability and how evenly economic development reaches different parts of the country.</p>
+                        <p>We build a regional panel dataset that joins monthly PHP/USD exchange rates from the Bangko Sentral ng Pilipinas (BSP) with monthly regional Consumer Price Index (CPI) data from the Philippine Statistics Authority (PSA). We then compare how CPI responds to peso depreciation overall, across regions, and within food categories.
                     </p>
                 </div>
             </div>
@@ -690,17 +699,17 @@
             </div>
 
             <!-- View Mode Toggle (All Stacked vs. Focused Tab) -->
-            <div class="inline-flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 self-start">
-                <button onclick="filterEDASection('all')" id="tabBtn-all" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-amber-500 text-slate-950 transition-all">
+            <div class="grid grid-cols-2 sm:inline-flex items-center justify-center p-1.5 rounded-xl bg-slate-900 border border-slate-800 gap-1 self-start">
+                <button onclick="filterEDASection('all')" id="tabBtn-all" class="eda-tab-btn inline-flex items-center justify-center text-center px-4 py-2 rounded-lg text-xs font-mono font-semibold bg-amber-500 text-slate-950 transition-all">
                     Show All (1–3)
                 </button>
-                <button onclick="filterEDASection('rq1')" id="tabBtn-rq1" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                <button onclick="filterEDASection('rq1')" id="tabBtn-rq1" class="eda-tab-btn inline-flex items-center justify-center text-center px-4 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
                     RQ1: National
                 </button>
-                <button onclick="filterEDASection('rq2')" id="tabBtn-rq2" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                <button onclick="filterEDASection('rq2')" id="tabBtn-rq2" class="eda-tab-btn inline-flex items-center justify-center text-center px-4 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
                     RQ2: Regional
                 </button>
-                <button onclick="filterEDASection('rq3')" id="tabBtn-rq3" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                <button onclick="filterEDASection('rq3')" id="tabBtn-rq3" class="eda-tab-btn inline-flex items-center justify-center text-center px-4 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
                     RQ3: Food CPI
                 </button>
             </div>
@@ -1038,48 +1047,59 @@
                 </h2>
             </div>
             <span class="text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl">
-                Stacked Shared X-Axis Timeline (2022–2026)
+                Unified Overlapping Timeline (2022–2026)
             </span>
         </div>
 
         <div class="portfolio-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 bg-[#0d111a]">
             <div class="text-center mb-6">
                 <h3 class="font-display text-lg sm:text-2xl font-extrabold text-white">
-                    Peso Depreciation Triggers Nationwide CPI Waves & Delayed Food Spikes Across Philippine Regions (2022–2026)
+                    Peso Depreciation Triggers Unequal Food CPI Spikes Across Philippine Regions (2022–2026)
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                    Comparing the macro exchange rate driver (Panel A) with uniform regional CPI tracks and 3-month lagged Food CPI transmission (Panel B)
+                    Combined overlapping trajectories of the macro exchange rate shock (Peso YoY Depreciation) alongside regional CPI growth (Luzon, Visayas, Mindanao) and 3-month lagged Food CPI transmission
                 </p>
             </div>
 
-            <!-- Stacked Panel A (Driver) -->
-            <div class="bg-[#121622] rounded-2xl p-4 sm:p-5 border border-slate-800/90 mb-4">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="font-display font-bold text-sm sm:text-base text-blue-400">
-                        Panel A: Macro Exchange Rate Shock (Driver)
-                    </span>
-                    <span class="text-xs font-mono text-slate-400">Peso YoY Depreciation (%)</span>
+            <!-- Interactive Series Filter Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-4 pb-4 border-b border-slate-800/80">
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button onclick="toggleNutshellSeries(0, this)" class="nutshell-pill inline-flex items-center justify-center text-center px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-blue-500/15 text-blue-400 border border-blue-500/40 hover:bg-blue-500/25 transition-all gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#3b82f6] shrink-0"></span>
+                        <span>Peso YoY Depreciation (%)</span>
+                    </button>
+                    <button onclick="toggleNutshellSeries(1, this)" class="nutshell-pill inline-flex items-center justify-center text-center px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-rose-500/15 text-rose-400 border border-rose-500/40 hover:bg-rose-500/25 transition-all gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e] shrink-0"></span>
+                        <span>Food CPI (3-Mo Lagged Transmission)</span>
+                    </button>
+                    <button onclick="toggleNutshellSeries(2, this)" class="nutshell-pill inline-flex items-center justify-center text-center px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/25 transition-all gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4] shrink-0"></span>
+                        <span>Luzon CPI Growth (0.432%)</span>
+                    </button>
+                    <button onclick="toggleNutshellSeries(3, this)" class="nutshell-pill inline-flex items-center justify-center text-center px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/40 hover:bg-amber-500/25 transition-all gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b] shrink-0"></span>
+                        <span>Visayas CPI Growth (0.425%)</span>
+                    </button>
+                    <button onclick="toggleNutshellSeries(4, this)" class="nutshell-pill inline-flex items-center justify-center text-center px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition-all gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#10b981] shrink-0"></span>
+                        <span>Mindanao CPI Growth (0.437%)</span>
+                    </button>
                 </div>
-                <div class="relative h-56 sm:h-64 w-full">
-                    <canvas id="nutshellPanelAChart"></canvas>
-                </div>
+                <button onclick="resetNutshellSeries()" class="inline-flex items-center justify-center text-center px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300 hover:text-amber-400 transition-colors">
+                    Show All 5 Lines
+                </button>
             </div>
 
-            <!-- Stacked Panel B (Response) -->
-            <div class="bg-[#121622] rounded-2xl p-4 sm:p-5 border border-slate-800/90">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span class="font-display font-bold text-sm sm:text-base text-pink-400">
-                        Panel B: Regional Uniformity & Delayed Food CPI Reaction (Response)
+            <!-- Single Combined Overlapping Graph -->
+            <div class="bg-[#121622] rounded-2xl p-4 sm:p-6 border border-slate-800/90">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span class="font-display font-bold text-sm sm:text-base text-slate-100">
+                        Combined Macro Exchange Rate Driver & Regional / Food CPI Response (2022–2026)
                     </span>
-                    <div class="flex flex-wrap items-center gap-3 text-[11px] font-mono">
-                        <span class="text-slate-300">--- Luzon (0.432%)</span>
-                        <span class="text-slate-400">··· Visayas (0.425%)</span>
-                        <span class="text-slate-300">-·- Mindanao (0.437%)</span>
-                        <span class="text-pink-400 font-bold">━ Food CPI (3-Mo Lagged Transmission)</span>
-                    </div>
+                    <span class="text-xs font-mono text-slate-400">Click any legend pill above to toggle series visibility</span>
                 </div>
-                <div class="relative h-64 sm:h-72 w-full">
-                    <canvas id="nutshellPanelBChart"></canvas>
+                <div class="relative h-80 sm:h-[420px] w-full">
+                    <canvas id="nutshellCombinedChart"></canvas>
                 </div>
             </div>
 
@@ -1221,50 +1241,49 @@
         // ============================================================================
         function initPortfolioCharts() {
             // ------------------------------------------------------------------------
-            // RQ 1 - PANEL A: YoY Growth Rates Over Time (Jan 2023 – Jul 2026)
+            // RQ1 PANEL A: Year-over-Year (YoY) Growth Rates Over Time
             // ------------------------------------------------------------------------
-            const rq1Dates = [
+            const rq1Labels = [
                 '2023-01','2023-03','2023-05','2023-07','2023-09','2023-11',
                 '2024-01','2024-03','2024-05','2024-07','2024-09','2024-11',
                 '2025-01','2025-03','2025-05','2025-07','2025-09','2025-11',
                 '2026-01','2026-03','2026-05','2026-07'
             ];
-            const nationalCPIYoY = [
-                8.5, 7.6, 6.1, 4.3, 5.8, 4.1,
+            const rq1CPIYoY = [
+                8.5, 7.6, 6.1, 4.3, 5.7, 4.1,
                 2.8, 3.7, 4.1, 4.6, 2.0, 2.5,
-                2.8, 1.8, 1.0, 0.5, 1.1, 1.0,
-                2.0, 4.8, 7.7, 7.0
+                2.8, 1.8, 1.0, 0.5, 1.2, 1.0,
+                2.0, 4.2, 7.7, 7.0
             ];
-            const pesoDeprYoY = [
-                7.3, 5.3, 6.4, -1.7, -1.1, -3.2,
-                1.7, 2.0, 3.7, 6.5, -1.3, 5.1,
-                4.3, 2.9, -3.7, -2.9, 2.1, 0.4,
-                1.3, 4.0, 10.5, null
+            const rq1PesoYoY = [
+                7.3, 5.3, 6.4, -1.7, 0.7, -3.3,
+                1.8, 1.9, 3.6, 6.4, -1.3, 5.1,
+                4.3, 2.8, -3.7, -2.9, 2.1, 0.4,
+                1.3, 3.2, 6.1, 10.4
             ];
 
             new Chart(document.getElementById('rq1PanelAChart'), {
                 type: 'line',
                 data: {
-                    labels: rq1Dates,
+                    labels: rq1Labels,
                     datasets: [
                         {
                             label: 'National CPI YoY Inflation (%)',
-                            data: nationalCPIYoY,
+                            data: rq1CPIYoY,
                             borderColor: '#ec4899',
-                            backgroundColor: 'rgba(236, 72, 153, 0.12)',
+                            backgroundColor: 'rgba(236, 72, 153, 0.15)',
                             borderWidth: 2.5,
                             pointRadius: 3,
                             tension: 0.25
                         },
                         {
                             label: 'Peso YoY Depreciation (%)',
-                            data: pesoDeprYoY,
+                            data: rq1PesoYoY,
                             borderColor: '#a855f7',
                             backgroundColor: 'rgba(168, 85, 247, 0.1)',
                             borderDash: [6, 4],
                             borderWidth: 2.2,
-                            pointStyle: 'triangle',
-                            pointRadius: 3.5,
+                            pointRadius: 3,
                             tension: 0.25
                         }
                     ]
@@ -1273,29 +1292,32 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         y: {
-                            title: { display: true, text: 'Annual Percentage Change (%)' },
+                            title: { display: true, text: 'Annual Percentage Change (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         x: {
-                            grid: { color: 'rgba(255,255,255,0.04)' }
+                            grid: { color: 'rgba(255,255,255,0.03)' }
                         }
                     }
                 }
             });
 
             // ------------------------------------------------------------------------
-            // RQ 1 - PANEL B: Correlation Scatter + OLS Trendline (n = 41)
+            // RQ1 PANEL B: Correlation Scatter + OLS Trendline
             // ------------------------------------------------------------------------
             const rq1ScatterPoints = [
-                {x: -3.9, y: 0.9}, {x: -3.7, y: 1.0}, {x: -3.4, y: 4.9}, {x: -3.2, y: 4.1}, {x: -2.9, y: 0.45},
+                {x: -3.9, y: 0.9}, {x: -3.6, y: 1.0}, {x: -3.4, y: 4.9}, {x: -3.1, y: 4.2}, {x: -2.9, y: 0.5},
                 {x: -1.7, y: 4.3}, {x: -1.3, y: 2.0}, {x: -1.1, y: 5.8}, {x: -0.1, y: 4.0}, {x: -0.1, y: 1.0},
-                {x: 0.1, y: 0.75}, {x: 0.4, y: 2.6}, {x: 0.4, y: 1.0}, {x: 0.7, y: 1.6}, {x: 0.8, y: 4.9},
-                {x: 0.9, y: 2.5}, {x: 1.3, y: 2.0}, {x: 1.7, y: 2.9}, {x: 1.8, y: 1.0}, {x: 1.9, y: 3.6},
-                {x: 2.0, y: 3.7}, {x: 2.1, y: 1.2}, {x: 2.3, y: 3.4}, {x: 2.8, y: 1.65}, {x: 2.9, y: 4.1},
-                {x: 3.5, y: 4.3}, {x: 3.6, y: 1.9}, {x: 3.7, y: 4.1}, {x: 4.3, y: 2.8}, {x: 4.3, y: 5.2},
-                {x: 5.0, y: 4.2}, {x: 5.1, y: 2.7}, {x: 5.1, y: 2.5}, {x: 5.3, y: 7.5}, {x: 6.0, y: 7.7},
+                {x: 0.2, y: 0.8}, {x: 0.4, y: 2.6}, {x: 0.4, y: 1.0}, {x: 0.7, y: 1.6}, {x: 0.8, y: 4.9},
+                {x: 0.9, y: 2.5}, {x: 1.3, y: 2.0}, {x: 1.8, y: 2.9}, {x: 1.8, y: 1.0}, {x: 1.9, y: 3.6},
+                {x: 1.9, y: 3.7}, {x: 2.1, y: 1.2}, {x: 2.4, y: 3.4}, {x: 2.8, y: 1.6}, {x: 3.0, y: 4.1},
+                {x: 3.5, y: 4.3}, {x: 3.6, y: 1.9}, {x: 3.7, y: 4.2}, {x: 4.3, y: 2.8}, {x: 4.3, y: 5.2},
+                {x: 5.0, y: 4.2}, {x: 5.1, y: 2.5}, {x: 5.1, y: 2.7}, {x: 5.3, y: 7.5}, {x: 6.1, y: 7.7},
                 {x: 6.4, y: 5.8}, {x: 6.4, y: 6.4}, {x: 6.5, y: 4.6}, {x: 6.8, y: 8.5}, {x: 7.3, y: 8.5},
                 {x: 10.5, y: 7.2}
             ];
@@ -1308,15 +1330,14 @@
                             label: 'Monthly Observations (n = 41)',
                             data: rq1ScatterPoints,
                             backgroundColor: 'rgba(192, 132, 252, 0.8)',
-                            borderColor: '#ec4899',
+                            borderColor: '#f472b6',
                             pointRadius: 4.5
                         },
                         {
                             type: 'line',
-                            label: 'OLS Trendline (ρ=0.572, r=0.604)',
+                            label: 'OLS Trendline (ρ = 0.572, r = 0.604)',
                             data: [{x: -4, y: 1.25}, {x: 10.5, y: 6.95}],
                             borderColor: '#ec4899',
-                            backgroundColor: 'rgba(236, 72, 153, 0.12)',
                             borderWidth: 2.5,
                             pointRadius: 0,
                             fill: false
@@ -1326,13 +1347,16 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         x: {
-                            title: { display: true, text: 'Peso YoY Depreciation (%)' },
+                            title: { display: true, text: 'Peso YoY Depreciation (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         y: {
-                            title: { display: true, text: 'National CPI YoY Inflation (%)' },
+                            title: { display: true, text: 'National CPI YoY Inflation (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         }
                     }
@@ -1340,7 +1364,7 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 2 - PANEL A: CPI MoM Growth Rate by Island Group (Mean vs Median + IQR)
+            // RQ2 PANEL A: Island Group Mean vs. Median CPI MoM Growth Rate
             // ------------------------------------------------------------------------
             new Chart(document.getElementById('rq2PanelAChart'), {
                 type: 'bar',
@@ -1351,28 +1375,31 @@
                             label: 'Mean MoM CPI Growth (%)',
                             data: [0.432, 0.425, 0.437],
                             backgroundColor: ['rgba(59, 130, 246, 0.75)', 'rgba(249, 115, 22, 0.75)', 'rgba(168, 85, 247, 0.75)'],
-                            borderColor: ['#60a5fa', '#fb923c', '#c084fc'],
+                            borderColor: ['#3b82f6', '#f97316', '#a855f7'],
                             borderWidth: 1.5,
-                            borderRadius: 6
+                            borderRadius: 8
                         },
                         {
                             label: 'Median MoM CPI Growth (%)',
                             data: [0.309, 0.380, 0.254],
-                            backgroundColor: ['rgba(59, 130, 246, 0.25)', 'rgba(249, 115, 22, 0.25)', 'rgba(168, 85, 247, 0.25)'],
+                            backgroundColor: ['rgba(59, 130, 246, 0.3)', 'rgba(249, 115, 22, 0.3)', 'rgba(168, 85, 247, 0.3)'],
                             borderColor: ['#93c5fd', '#fdba74', '#d8b4fe'],
                             borderWidth: 1.5,
-                            borderRadius: 6
+                            borderRadius: 8
                         }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 0.6,
-                            title: { display: true, text: 'Monthly CPI Growth Rate (%)' },
+                            title: { display: true, text: 'Monthly CPI Growth Rate (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         x: {
@@ -1383,13 +1410,13 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 2 - PANEL B: All 18 Administrative Regions Horizontal Bar Chart
+            // RQ2 PANEL B: Mean CPI MoM Growth Rate across all 18 Administrative Regions
             // ------------------------------------------------------------------------
             const regions18 = [
                 'Region VII (Central Visayas)',
                 'Region XI (Davao Region)',
-                'BARMM',
-                'CAR (Cordillera)',
+                'BARMM (Bangsamoro)',
+                'CAR (Cordillera Admin.)',
                 'Region IV-A (CALABARZON)',
                 'Region X (Northern Mindanao)',
                 'Region III (Central Luzon)',
@@ -1406,23 +1433,22 @@
                 'Region V (Bicol Region)'
             ];
             const regionMeans = [
-                0.488, 0.486, 0.484, 0.481, 0.475, 0.473,
-                0.468, 0.443, 0.435, 0.427, 0.423, 0.419,
-                0.402, 0.398, 0.386, 0.379, 0.365, 0.358
+                0.488, 0.486, 0.484, 0.481, 0.474, 0.472, 0.468, 0.445, 0.435,
+                0.428, 0.422, 0.418, 0.405, 0.398, 0.388, 0.380, 0.365, 0.358
             ];
 
             new Chart(document.getElementById('rq2PanelBChart'), {
                 type: 'bar',
                 data: {
                     labels: regions18,
-                    datasets: [{
-                        label: 'Mean Monthly CPI Growth Rate (%) during Peso Depreciation',
-                        data: regionMeans,
-                        backgroundColor: regionMeans.map((_, i) => `hsla(${205 + i * 2}, 70%, ${45 + i * 1.2}%, 0.85)`),
-                        borderColor: 'rgba(148, 163, 184, 0.4)',
-                        borderWidth: 1,
-                        borderRadius: 4
-                    }]
+                    datasets: [
+                        {
+                            label: 'Mean Monthly CPI Growth Rate (%)',
+                            data: regionMeans,
+                            backgroundColor: regionMeans.map((_, idx) => `hsla(${205 + idx * 1.5}, 75%, ${45 + idx * 1.4}%, 0.85)`),
+                            borderRadius: 4
+                        }
+                    ]
                 },
                 options: {
                     indexAxis: 'y',
@@ -1435,11 +1461,11 @@
                         x: {
                             beginAtZero: true,
                             max: 0.65,
-                            title: { display: true, text: 'Mean Monthly CPI Growth Rate (%)' },
+                            title: { display: true, text: 'Mean Monthly CPI Growth Rate (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         y: {
-                            ticks: { font: { size: 10 } },
+                            ticks: { color: '#cbd5e1', font: { size: 10 } },
                             grid: { display: false }
                         }
                     }
@@ -1447,34 +1473,34 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 3 - PANEL A: Co-Movement USD/PHP vs. National Food CPI (2022–2026)
+            // RQ3 PANEL A: Co-Movement USD/PHP vs. National Food CPI (2022–2026)
             // ------------------------------------------------------------------------
-            const rq3Dates = [
+            const rq3Timeline = [
                 'Jan 2022','Apr 2022','Jul 2022','Oct 2022',
                 'Jan 2023','Apr 2023','Jul 2023','Oct 2023',
                 'Jan 2024','Apr 2024','Jul 2024','Oct 2024',
                 'Jan 2025','Apr 2025','Jul 2025','Oct 2025',
-                'Jan 2026','May 2026'
+                'Jan 2026','Apr 2026','Jul 2026'
             ];
             const usdPhpSeries = [
                 51.3, 52.1, 55.9, 58.8,
-                54.9, 55.4, 54.9, 56.8,
-                56.0, 56.5, 58.6, 56.1,
-                58.4, 57.3, 55.7, 57.2,
-                59.1, 61.3
+                54.9, 55.3, 54.9, 56.8,
+                56.0, 56.9, 58.6, 56.1,
+                58.4, 57.3, 55.6, 57.2,
+                59.1, 58.3, 61.4
             ];
             const foodCpiSeries = [
-                113.0, 114.2, 118.5, 123.4,
-                127.8, 126.1, 127.4, 130.5,
-                131.2, 131.9, 133.4, 133.1,
-                136.5, 133.9, 134.1, 135.2,
-                139.8, 142.6
+                113.0, 114.2, 118.1, 122.4,
+                128.5, 126.1, 126.8, 130.8,
+                131.6, 132.1, 133.5, 133.2,
+                136.5, 133.6, 133.7, 135.2,
+                139.1, 139.6, 141.6
             ];
 
             new Chart(document.getElementById('rq3PanelAChart'), {
                 type: 'line',
                 data: {
-                    labels: rq3Dates,
+                    labels: rq3Timeline,
                     datasets: [
                         {
                             label: 'USD/PHP Exchange Rate (₱)',
@@ -1483,15 +1509,17 @@
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
                             yAxisID: 'y',
                             borderWidth: 2.3,
+                            pointRadius: 2.5,
                             tension: 0.25
                         },
                         {
-                            label: 'Food CPI Index (2018=100)',
+                            label: 'Food CPI (2018=100)',
                             data: foodCpiSeries,
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
                             yAxisID: 'y1',
                             borderWidth: 2.5,
+                            pointRadius: 2.5,
                             tension: 0.25
                         }
                     ]
@@ -1500,6 +1528,9 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         y: {
                             type: 'linear',
@@ -1510,7 +1541,7 @@
                         y1: {
                             type: 'linear',
                             position: 'right',
-                            title: { display: true, text: 'Food CPI Index (All Categories)', color: '#f87171' },
+                            title: { display: true, text: 'Food CPI Index (2018=100)', color: '#f87171' },
                             grid: { drawOnChartArea: false }
                         }
                     }
@@ -1518,15 +1549,15 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 3 - PANEL B: Exchange Rate Pass-Through Elasticity (n = 53)
+            // RQ3 PANEL B: Exchange Rate Pass-Through Elasticity (n = 53)
             // ------------------------------------------------------------------------
-            const rq3ElasticityScatter = [
+            const rq3ElasticityPoints = [
                 {x: 51.3, y: 113.0}, {x: 52.0, y: 113.5}, {x: 52.3, y: 114.2}, {x: 53.6, y: 115.6},
-                {x: 54.8, y: 127.0}, {x: 55.0, y: 128.8}, {x: 55.4, y: 126.1}, {x: 55.6, y: 131.5},
-                {x: 55.8, y: 119.0}, {x: 55.9, y: 117.5}, {x: 56.0, y: 132.1}, {x: 56.2, y: 130.8},
-                {x: 56.5, y: 133.5}, {x: 56.8, y: 130.5}, {x: 57.2, y: 134.8}, {x: 57.4, y: 135.2},
-                {x: 57.7, y: 124.2}, {x: 58.1, y: 136.5}, {x: 58.4, y: 138.8}, {x: 58.6, y: 133.4},
-                {x: 58.8, y: 122.1}, {x: 59.1, y: 139.8}, {x: 60.2, y: 141.5}, {x: 61.3, y: 142.6}
+                {x: 54.8, y: 127.0}, {x: 55.0, y: 128.5}, {x: 55.4, y: 126.1}, {x: 55.7, y: 124.5},
+                {x: 55.9, y: 118.1}, {x: 56.0, y: 131.6}, {x: 56.2, y: 132.8}, {x: 56.6, y: 130.9},
+                {x: 56.8, y: 131.2}, {x: 57.2, y: 134.8}, {x: 57.4, y: 135.2}, {x: 57.8, y: 133.9},
+                {x: 58.1, y: 136.4}, {x: 58.3, y: 139.6}, {x: 58.5, y: 135.4}, {x: 58.6, y: 133.5},
+                {x: 58.8, y: 122.4}, {x: 59.1, y: 139.1}, {x: 60.2, y: 140.4}, {x: 61.4, y: 141.6}
             ];
 
             new Chart(document.getElementById('rq3PanelBChart'), {
@@ -1534,16 +1565,17 @@
                 data: {
                     datasets: [
                         {
-                            label: 'Monthly FX vs. Food CPI (n = 53)',
-                            data: rq3ElasticityScatter,
-                            backgroundColor: '#14b8a6',
+                            label: 'Food CPI vs. USD/PHP (n = 53)',
+                            data: rq3ElasticityPoints,
+                            backgroundColor: '#2dd4bf',
+                            borderColor: '#0f766e',
                             pointRadius: 4.5
                         },
                         {
                             type: 'line',
-                            label: 'OLS: CPI = 36.20 + 2.93 FX (R² = 0.683)',
-                            data: [{x: 51, y: 113.5}, {x: 61.8, y: 145.0}],
-                            borderColor: '#f43f5e',
+                            label: 'OLS: CPI = -36.20 + 2.93 FX (R² = 0.683)',
+                            data: [{x: 51.0, y: 113.4}, {x: 61.8, y: 145.1}],
+                            borderColor: '#e11d48',
                             borderWidth: 2.5,
                             pointRadius: 0
                         }
@@ -1552,13 +1584,16 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         x: {
-                            title: { display: true, text: 'USD/PHP Average Exchange Rate (₱)' },
+                            title: { display: true, text: 'USD/PHP Average Exchange Rate (₱)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         y: {
-                            title: { display: true, text: 'Food CPI (All Categories)' },
+                            title: { display: true, text: 'Food CPI (All Categories)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         }
                     }
@@ -1566,23 +1601,42 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 3 - PANEL C: Dynamic Lag Structure (Lag 0m to Lag 6m)
+            // RQ3 PANEL C: Dynamic Lag Structure (Lag 0m to Lag 6m)
             // ------------------------------------------------------------------------
-            const lagLabels = ['Lag 0m\n(p=0.17)', 'Lag 1m\n(p=0.13)', 'Lag 2m\n(p=0.15)', 'Lag 3m*\n(p=0.014)', 'Lag 4m*\n(p=0.041)', 'Lag 5m\n(p=0.56)', 'Lag 6m\n(p=0.22)'];
-            const lagCorrelations = [0.195, 0.210, 0.200, 0.3487, 0.2962, 0.080, 0.180];
-
             new Chart(document.getElementById('rq3PanelCChart'), {
                 type: 'bar',
                 data: {
-                    labels: lagLabels,
-                    datasets: [{
-                        label: 'Pearson Correlation (r)',
-                        data: lagCorrelations,
-                        backgroundColor: lagCorrelations.map((_, idx) => (idx === 3 || idx === 4) ? '#0d9488' : 'rgba(148, 163, 184, 0.45)'),
-                        borderColor: lagCorrelations.map((_, idx) => (idx === 3 || idx === 4) ? '#2dd4bf' : '#94a3b8'),
-                        borderWidth: 1.5,
-                        borderRadius: 6
-                    }]
+                    labels: [
+                        'Lag 0m (p=0.17)',
+                        'Lag 1m (p=0.13)',
+                        'Lag 2m (p=0.15)',
+                        'Lag 3m* (p=0.014)',
+                        'Lag 4m* (p=0.041)',
+                        'Lag 5m (p=0.58)',
+                        'Lag 6m (p=0.22)'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Pearson Correlation (r)',
+                            data: [0.1950, 0.2120, 0.2030, 0.3487, 0.2962, 0.0810, 0.1840],
+                            backgroundColor: [
+                                'rgba(148, 163, 184, 0.5)',
+                                'rgba(148, 163, 184, 0.5)',
+                                'rgba(148, 163, 184, 0.5)',
+                                'rgba(20, 184, 166, 0.9)',
+                                'rgba(20, 184, 166, 0.85)',
+                                'rgba(148, 163, 184, 0.5)',
+                                'rgba(148, 163, 184, 0.5)'
+                            ],
+                            borderColor: [
+                                '#94a3b8', '#94a3b8', '#94a3b8',
+                                '#2dd4bf', '#2dd4bf',
+                                '#94a3b8', '#94a3b8'
+                            ],
+                            borderWidth: 1.5,
+                            borderRadius: 6
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -1594,10 +1648,11 @@
                         y: {
                             beginAtZero: true,
                             max: 0.42,
-                            title: { display: true, text: 'Pearson Correlation (r)' },
+                            title: { display: true, text: 'Pearson Correlation (r)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         x: {
+                            ticks: { font: { size: 10 } },
                             grid: { display: false }
                         }
                     }
@@ -1605,26 +1660,26 @@
             });
 
             // ------------------------------------------------------------------------
-            // RQ 3 - PANEL D: MoM Food Inflation by FX Regime (Stickiness Proof)
+            // RQ3 PANEL D: MoM Food Inflation Distribution by FX Regime
             // ------------------------------------------------------------------------
             new Chart(document.getElementById('rq3PanelDChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['Peso Appreciation\n(MoM ΔFX ≤ 0, n=22)', 'Peso Depreciation\n(MoM ΔFX > 0, n=30)'],
+                    labels: ['Peso Appreciation (ΔFX ≤ 0, n=22)', 'Peso Depreciation (ΔFX > 0, n=30)'],
                     datasets: [
                         {
                             label: 'Mean MoM Food CPI Inflation (%)',
                             data: [0.41, 0.45],
-                            backgroundColor: ['rgba(96, 165, 250, 0.7)', 'rgba(248, 113, 113, 0.7)'],
-                            borderColor: ['#60a5fa', '#f87171'],
+                            backgroundColor: ['rgba(96, 165, 250, 0.75)', 'rgba(244, 63, 94, 0.75)'],
+                            borderColor: ['#60a5fa', '#f43f5e'],
                             borderWidth: 1.5,
                             borderRadius: 8
                         },
                         {
-                            label: 'Upper Quartile (Q3 %)',
+                            label: 'Upper Quartile (Q3) MoM Food Inflation (%)',
                             data: [0.83, 0.91],
-                            backgroundColor: ['rgba(96, 165, 250, 0.25)', 'rgba(248, 113, 113, 0.25)'],
-                            borderColor: ['#93c5fd', '#fca5a5'],
+                            backgroundColor: ['rgba(96, 165, 250, 0.3)', 'rgba(244, 63, 94, 0.3)'],
+                            borderColor: ['#93c5fd', '#fda4af'],
                             borderWidth: 1.5,
                             borderRadius: 8
                         }
@@ -1633,11 +1688,14 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e2e8f0', font: { size: 11 } } }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 1.2,
-                            title: { display: true, text: 'MoM Food CPI Inflation (%)' },
+                            title: { display: true, text: 'MoM Food CPI Inflation (%)', color: '#94a3b8' },
                             grid: { color: 'rgba(255,255,255,0.05)' }
                         },
                         x: {
@@ -1648,90 +1706,84 @@
             });
 
             // ------------------------------------------------------------------------
-            // NUTSHELL PLOT (PAGE 7 OF PDF): PANEL A & PANEL B
+            // NUTSHELL PLOT (PAGE 7 OF PDF): UNIFIED OVERLAPPING GRAPH
             // ------------------------------------------------------------------------
             const nutshellTimeline = [
-                '2022-Q1','2022-Q2','2022-Q3','2022-Q4',
-                '2023-Q1','2023-Q2','2023-Q3','2023-Q4',
-                '2024-Q1','2024-Q2','2024-Q3','2024-Q4',
-                '2025-Q1','2025-Q2','2025-Q3','2025-Q4',
-                '2026-Q1','2026-Q2'
+                '2022-01','2022-04','2022-07','2022-10',
+                '2023-01','2023-04','2023-07','2023-10',
+                '2024-01','2024-04','2024-07','2024-10',
+                '2025-01','2025-04','2025-07','2025-10',
+                '2026-01','2026-04','2026-07'
             ];
             const nutshellDriverFX = [
                 2.5, 4.8, 5.7, 4.6,
                 3.0, 2.5, 0.6, -1.3,
                 -1.8, -1.2, 1.0, 0.3,
                 1.8, 4.3, 4.5, 5.8,
-                3.8, 2.9
+                3.3, 3.6, 2.9
             ];
 
-            new Chart(document.getElementById('nutshellPanelAChart'), {
-                type: 'line',
-                data: {
-                    labels: nutshellTimeline,
-                    datasets: [{
-                        label: 'Peso YoY Depreciation (%)',
-                        data: nutshellDriverFX,
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.22)',
-                        borderWidth: 2.5,
-                        fill: true,
-                        tension: 0.2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            title: { display: true, text: 'Peso YoY Depr (%)' },
-                            grid: { color: 'rgba(255,255,255,0.05)' }
-                        },
-                        x: {
-                            grid: { color: 'rgba(255,255,255,0.04)' }
-                        }
-                    }
-                }
-            });
-
-            new Chart(document.getElementById('nutshellPanelBChart'), {
+            window.nutshellChartInstance = new Chart(document.getElementById('nutshellCombinedChart'), {
                 type: 'line',
                 data: {
                     labels: nutshellTimeline,
                     datasets: [
                         {
-                            label: 'Food CPI (3-Mo Lagged Transmission)',
-                            data: [2.5, 2.2, 4.1, 4.3, 4.4, 3.5, 2.6, 1.8, 1.4, 0.4, 0.8, 2.1, 1.5, 2.4, 4.7, 4.1, 4.7, 3.0],
-                            borderColor: '#ec4899',
-                            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                            label: 'Peso YoY Depreciation (%)',
+                            data: nutshellDriverFX,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.14)',
                             borderWidth: 3,
+                            pointRadius: 3.5,
+                            pointHoverRadius: 6,
+                            fill: true,
                             tension: 0.25
                         },
                         {
-                            label: 'Luzon CPI Growth (0.432% MoM avg)',
-                            data: [2.6, 3.4, 4.0, 4.8, 3.0, 3.6, 2.2, 1.2, 1.3, 0.9, 2.1, 2.2, 2.0, 3.9, 3.2, 4.3, 4.6, 2.9],
-                            borderColor: 'rgba(226, 232, 240, 0.75)',
-                            borderDash: [5, 4],
-                            borderWidth: 1.5,
-                            pointRadius: 2,
+                            label: 'Food CPI (3-Mo Lagged Transmission)',
+                            data: [2.5, 2.2, 4.1, 4.3, 4.4, 3.5, 2.6, 1.8, 1.4, 0.4, 0.8, 2.1, 1.5, 2.4, 4.7, 4.1, 4.7, 3.8, 3.0],
+                            borderColor: '#f43f5e',
+                            backgroundColor: 'rgba(244, 63, 94, 0.08)',
+                            borderWidth: 3,
+                            pointRadius: 3.5,
+                            pointHoverRadius: 6,
+                            fill: false,
                             tension: 0.25
                         },
                         {
-                            label: 'Visayas CPI Growth (0.425% MoM avg)',
-                            data: [2.5, 3.2, 3.9, 4.6, 3.1, 3.4, 2.1, 1.3, 1.2, 0.8, 1.9, 2.1, 2.1, 3.8, 3.1, 4.2, 4.5, 2.8],
-                            borderColor: 'rgba(148, 163, 184, 0.65)',
-                            borderDash: [2, 3],
-                            borderWidth: 1.5,
-                            pointRadius: 2,
+                            label: 'Luzon CPI Growth (0.432%)',
+                            data: [2.6, 3.4, 4.0, 4.8, 3.0, 3.6, 2.2, 1.2, 1.3, 0.9, 2.1, 2.2, 2.0, 3.9, 3.2, 4.3, 4.6, 3.4, 2.9],
+                            borderColor: '#06b6d4',
+                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                            borderDash: [6, 3],
+                            borderWidth: 2.2,
+                            pointRadius: 2.5,
+                            pointHoverRadius: 5,
+                            fill: false,
                             tension: 0.25
                         },
                         {
-                            label: 'Mindanao CPI Growth (0.437% MoM avg)',
-                            data: [2.6, 3.5, 4.1, 4.9, 2.9, 3.7, 2.3, 1.1, 1.4, 0.9, 2.2, 2.3, 1.9, 4.0, 3.3, 4.4, 4.7, 3.0],
-                            borderColor: 'rgba(203, 213, 225, 0.7)',
+                            label: 'Visayas CPI Growth (0.425%)',
+                            data: [2.5, 3.2, 3.9, 4.6, 3.1, 3.4, 2.1, 1.3, 1.2, 0.8, 1.9, 2.1, 2.1, 3.8, 3.1, 4.2, 4.5, 3.3, 2.8],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            borderDash: [3, 3],
+                            borderWidth: 2.2,
+                            pointRadius: 2.5,
+                            pointHoverRadius: 5,
+                            fill: false,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Mindanao CPI Growth (0.437%)',
+                            data: [2.6, 3.5, 4.1, 4.9, 2.9, 3.7, 2.3, 1.1, 1.4, 0.9, 2.2, 2.3, 1.9, 4.0, 3.3, 4.4, 4.7, 3.5, 3.0],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             borderDash: [8, 3, 2, 3],
-                            borderWidth: 1.5,
-                            pointRadius: 2,
+                            borderWidth: 2.2,
+                            pointRadius: 2.5,
+                            pointHoverRadius: 5,
+                            fill: false,
                             tension: 0.25
                         }
                     ]
@@ -1740,16 +1792,62 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#e2e8f0',
+                                usePointStyle: true,
+                                padding: 16,
+                                font: { size: 11 }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
-                            title: { display: true, text: 'CPI Inflation Rate (%)' },
-                            grid: { color: 'rgba(255,255,255,0.05)' }
+                            title: {
+                                display: true,
+                                text: 'Annual / Lagged Rate Change (%) — FX Depreciation & CPI Inflation',
+                                color: '#cbd5e1'
+                            },
+                            grid: { color: 'rgba(255,255,255,0.06)' }
                         },
                         x: {
+                            title: {
+                                display: true,
+                                text: 'Timeline (2022 – 2026)',
+                                color: '#94a3b8'
+                            },
                             grid: { color: 'rgba(255,255,255,0.04)' }
                         }
                     }
                 }
+            });
+        }
+
+        // Toggle individual lines on the combined Nutshell chart
+        function toggleNutshellSeries(datasetIndex, btnEl) {
+            const chart = window.nutshellChartInstance;
+            if (!chart) return;
+            const isVisible = chart.isDatasetVisible(datasetIndex);
+            chart.setDatasetVisibility(datasetIndex, !isVisible);
+            chart.update();
+            if (isVisible) {
+                btnEl.classList.add('opacity-40');
+            } else {
+                btnEl.classList.remove('opacity-40');
+            }
+        }
+
+        function resetNutshellSeries() {
+            const chart = window.nutshellChartInstance;
+            if (!chart) return;
+            chart.data.datasets.forEach((_, idx) => {
+                chart.setDatasetVisibility(idx, true);
+            });
+            chart.update();
+            document.querySelectorAll('.nutshell-pill').forEach(btn => {
+                btn.classList.remove('opacity-40');
             });
         }
 
