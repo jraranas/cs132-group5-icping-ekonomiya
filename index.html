@@ -752,10 +752,303 @@
                             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                         </a>
 
-                        <button onclick="copyDatasetLink(this)" type="button" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 text-xs font-mono transition-all">
+<button onclick="copyDatasetLink(this)" type="button" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 text-xs font-mono transition-all">
                             <i class="fa-regular fa-copy"></i>
                             <span>Copy Spreadsheet Link</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== NEW: DATASET METADATA, STATS & SAMPLE ROWS ==================== -->
+        <div class="mt-8 space-y-6">
+
+            <!-- 1. Sources Table + Collection Process -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Sources Table -->
+                <div class="lg:col-span-7 portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                                <span>Data Sources</span>
+                            </h3>
+                            <span class="text-xs font-mono text-slate-400">2 Official Agencies</span>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-xl border border-slate-800">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-slate-900/95 border-b border-slate-800 text-slate-300 font-mono text-xs uppercase">
+                                        <th class="py-3 px-4">Source</th>
+                                        <th class="py-3 px-4">Content</th>
+                                        <th class="py-3 px-4">Access</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                                    <tr class="hover:bg-slate-900/40 transition-colors">
+                                        <td class="py-3.5 px-4 font-semibold text-white align-top">Bangko Sentral ng Pilipinas (BSP)</td>
+                                        <td class="py-3.5 px-4 align-top">Monthly reference exchange rate bulletins (PHP per USD), used to measure peso depreciation, 2022–2026</td>
+                                        <td class="py-3.5 px-4 text-emerald-300 font-mono text-xs align-top">Downloadable from the BSP Statistics Database</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40 transition-colors">
+                                        <td class="py-3.5 px-4 font-semibold text-white align-top">Philippine Statistics Authority (PSA) OpenStat</td>
+                                        <td class="py-3.5 px-4 align-top">Monthly regional CPI tables for All Items and Food categories, all 18 administrative regions</td>
+                                        <td class="py-3.5 px-4 text-emerald-300 font-mono text-xs align-top">Downloadable from the PSA OpenStat portal</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-xs sm:text-sm text-amber-200 flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-info text-amber-400 mt-0.5 shrink-0"></i>
+                        <span>The CPI follows the PSA's 2018-based series: <strong class="text-white">2018 is the base year</strong> and the index is set to <strong class="text-white">100</strong>. CPI values are <strong class="text-white">index points</strong>, not pesos.</span>
+                    </div>
+                </div>
+
+                <!-- Collection Process & Sampling -->
+                <div class="lg:col-span-5 portfolio-card rounded-2xl p-6 flex flex-col justify-between border-l-4 border-l-emerald-500">
+                    <div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-2">Provenance</div>
+                        <h3 class="font-display font-bold text-lg text-white mb-3">
+                            Collection Process & Sampling
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                            We did not collect prices ourselves. The underlying figures come from the agencies' own collection: the <strong class="text-white">PSA's retail price surveys</strong> and the <strong class="text-white">BSP's tracking of interbank foreign exchange</strong>, which produces daily reference rates.
+                        </p>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            We extracted the published data as two raw Excel spreadsheets, one per source, and integrated them into one dataset. <strong class="text-emerald-300">No sampling was applied.</strong> We use all available monthly observations for all 18 regions and all 14 items from January 2022 to August 2026.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Sampling Method: Census / Full Panel</span>
+                        <span class="text-emerald-400">100% Coverage</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Dataset Size & Preprocessing Pipeline -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Dataset Size Table -->
+                <div class="lg:col-span-6 portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid fa-ruler-combined text-amber-400"></i>
+                                <span>Dataset Size & Dimensions</span>
+                            </h3>
+                            <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-amber-300">14,112 Rows</span>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-xl border border-slate-800">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-slate-900/95 border-b border-slate-800 text-slate-300 font-mono text-xs uppercase">
+                                        <th class="py-2.5 px-4">Measure</th>
+                                        <th class="py-2.5 px-4">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Time coverage</td>
+                                        <td class="py-2.5 px-4 font-mono text-white">56 months (Jan 2022 – Aug 2026)</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Regions</td>
+                                        <td class="py-2.5 px-4 font-mono text-white">18</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Items</td>
+                                        <td class="py-2.5 px-4 font-mono text-white">14 (All Items + 13 food categories)</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Total observations</td>
+                                        <td class="py-2.5 px-4 font-mono text-amber-300 font-semibold">14,112 (18 regions × 14 items × 56 months)</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Currently usable observations</td>
+                                        <td class="py-2.5 px-4 font-mono text-emerald-400 font-semibold">13,356</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-2.5 px-4 text-slate-400">Unavailable observations</td>
+                                        <td class="py-2.5 px-4 font-mono text-rose-300">756 (BSP exchange rates not yet released for June–August 2026)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 text-xs font-mono text-slate-400">
+                        * Unreleased BSP values are kept as <span class="text-rose-300">NA</span>. They are not estimated or imputed.
+                    </p>
+                </div>
+
+                <!-- Preprocessing Steps -->
+                <div class="lg:col-span-6 portfolio-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-gears text-teal-400"></i>
+                            <span>Preprocessing Pipeline</span>
+                        </h3>
+                        <span class="text-xs font-mono text-slate-400">4 Stages</span>
+                    </div>
+
+                    <ol class="space-y-3.5 text-sm text-slate-300">
+                        <li class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800/90 flex items-start gap-3">
+                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30 mt-0.5">1</span>
+                            <div>
+                                <strong class="text-white">Structural cleaning and unpivoting.</strong> The raw spreadsheets were reshaped into long format with one row per region, item, and month (<span class="font-mono text-xs text-slate-200">18 regions × 14 items</span>).
+                            </div>
+                        </li>
+                        <li class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800/90 flex items-start gap-3">
+                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30 mt-0.5">2</span>
+                            <div>
+                                <strong class="text-white">Key and string normalization.</strong> Temporal keys (year and month) and text labels were normalized across the 56 monthly periods so the two sources could be joined.
+                            </div>
+                        </li>
+                        <li class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800/90 flex items-start gap-3">
+                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30 mt-0.5">3</span>
+                            <div>
+                                <strong class="text-white">Relational integration.</strong> The monthly average USD/PHP rate was attached to every region–item–month row, producing <span class="font-mono text-xs text-amber-300">14,112 panel records</span>.
+                            </div>
+                        </li>
+                        <li class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800/90 flex items-start gap-3">
+                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30 mt-0.5">4</span>
+                            <div>
+                                <strong class="text-white">Calculated fields.</strong> Food inflation (%) and peso depreciation (%) are derived from the CPI and exchange-rate columns.
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 3. Quality Checks & Sample Rows -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Quality Checks Table -->
+                <div class="lg:col-span-6 portfolio-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-shield-check text-emerald-400"></i>
+                            <span>Data Quality Checks</span>
+                        </h3>
+                        <span class="text-xs font-mono text-emerald-400">6/6 Verified</span>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-800">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-slate-900/95 border-b border-slate-800 text-slate-300 font-mono text-xs uppercase">
+                                    <th class="py-2.5 px-3.5">Check</th>
+                                    <th class="py-2.5 px-3.5">What we verified</th>
+                                    <th class="py-2.5 px-3.5">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Completeness</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">Missing CPI observations</td>
+                                    <td class="py-2.5 px-3.5 text-emerald-400 font-mono text-xs">No missing CPI values</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Exchange-rate availability</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">BSP exchange-rate fields</td>
+                                    <td class="py-2.5 px-3.5 text-rose-300 font-mono text-xs">756 observations unavailable because of unreleased BSP data (limitation)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Duplicate records</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">Duplicate region × item × month combinations</td>
+                                    <td class="py-2.5 px-3.5 text-emerald-400 font-mono text-xs">0 duplicates</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Time coverage</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">Monthly observations, Jan 2022 – Aug 2026</td>
+                                    <td class="py-2.5 px-3.5 text-slate-200 font-mono text-xs">56 months</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Geographic coverage</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">All regional entries</td>
+                                    <td class="py-2.5 px-3.5 text-slate-200 font-mono text-xs">18 regions</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/40">
+                                    <td class="py-2.5 px-3.5 font-semibold text-white">Category consistency</td>
+                                    <td class="py-2.5 px-3.5 text-slate-400">CPI item and category labels</td>
+                                    <td class="py-2.5 px-3.5 text-emerald-400 font-mono text-xs">Consistent across the dataset</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Sample Rows Table -->
+                <div class="lg:col-span-6 portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid fa-table-list text-indigo-400"></i>
+                                <span>Sample Panel Rows</span>
+                            </h3>
+                            <span class="text-xs font-mono text-slate-400">Long Format Preview</span>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-xl border border-slate-800">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-slate-900/95 border-b border-slate-800 text-slate-300 font-mono uppercase">
+                                        <th class="py-2.5 px-3">Region</th>
+                                        <th class="py-2.5 px-3">Item</th>
+                                        <th class="py-2.5 px-3">Year</th>
+                                        <th class="py-2.5 px-3">Month</th>
+                                        <th class="py-2.5 px-3 text-right">CPI value</th>
+                                        <th class="py-2.5 px-3 text-right">USD/PHP avg</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-300 font-mono">
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-3 px-3 font-sans text-white font-medium">National Capital Region (NCR)</td>
+                                        <td class="py-3 px-3 font-sans">0 - ALL ITEMS</td>
+                                        <td class="py-3 px-3">2022</td>
+                                        <td class="py-3 px-3">Jan</td>
+                                        <td class="py-3 px-3 text-right text-amber-300">108.8</td>
+                                        <td class="py-3 px-3 text-right text-teal-300">51.2353</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-3 px-3 font-sans text-white font-medium">National Capital Region (NCR)</td>
+                                        <td class="py-3 px-3 font-sans">01.1.1.1 - Cereals (ND)</td>
+                                        <td class="py-3 px-3">2022</td>
+                                        <td class="py-3 px-3">Jan</td>
+                                        <td class="py-3 px-3 text-right text-amber-300">97.4074</td>
+                                        <td class="py-3 px-3 text-right text-teal-300">51.2353</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-3 px-3 font-sans text-white font-medium">CAR</td>
+                                        <td class="py-3 px-3 font-sans">01.1.2 - Meat and other parts of slaughtered land animals (ND)</td>
+                                        <td class="py-3 px-3">2022</td>
+                                        <td class="py-3 px-3">Jan</td>
+                                        <td class="py-3 px-3 text-right text-amber-300">125.6</td>
+                                        <td class="py-3 px-3 text-right text-teal-300">51.2353</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900/40">
+                                        <td class="py-3 px-3 font-sans text-white font-medium">Region I (Ilocos Region)</td>
+                                        <td class="py-3 px-3 font-sans">01.1.3 - Fish and other seafood (ND)</td>
+                                        <td class="py-3 px-3">2022</td>
+                                        <td class="py-3 px-3">Jan</td>
+                                        <td class="py-3 px-3 text-right text-amber-300">123.8</td>
+                                        <td class="py-3 px-3 text-right text-teal-300">51.2353</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Showing 4 of 14,112 panel observations</span>
+                        <a href="https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?gid=1086687753#gid=1086687753" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 font-mono inline-flex items-center gap-1">
+                            <span>View full table</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
                     </div>
                 </div>
             </div>
