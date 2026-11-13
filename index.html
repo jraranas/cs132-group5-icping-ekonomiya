@@ -1,255 +1,1973 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unequal Prices? | CS 132 Group 5</title>
-<style>
-:root{--bg:#f2f5f6;--ink:#1c2733;--muted:#5a6773;--line:#cfd8dc;--accent:#0b6e6e;--panel:#ffffff;--note:#fff4d6}
-@media (prefers-color-scheme:dark){:root{--bg:#10171c;--ink:#e6edf1;--muted:#9aa8b3;--line:#2a3640;--accent:#4fc3c3;--panel:#18222a;--note:#3a3216}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
-nav{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);padding:.8rem 1.25rem;display:flex;gap:1.25rem;flex-wrap:wrap;z-index:5}
-nav a{color:var(--ink);text-decoration:none;font-size:.95rem}
-nav a:hover,nav a:focus-visible{color:var(--accent);text-decoration:underline}
-header,main{max-width:900px;margin:0 auto;padding:0 1.25rem}
-header{padding-top:3rem;padding-bottom:1rem}
-h1{font:700 2.6rem/1.15 Georgia,serif;margin:0 0 .5rem}
-.sub{font:italic 1.3rem/1.4 Georgia,serif;color:var(--muted);margin:0 0 1rem}
-.meta{color:var(--muted);font-size:.95rem}
-h2{font:700 1.7rem/1.2 Georgia,serif;margin:3rem 0 1rem;padding-top:1.5rem;border-top:2px solid var(--accent)}
-h3{font-size:1.1rem;margin:1.75rem 0 .5rem}
-p{max-width:70ch}
-.stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
-.stat{background:var(--panel);border:1px solid var(--line);padding:.9rem 1.1rem;min-width:150px}
-.stat b{display:block;font:700 1.8rem Georgia,serif;color:var(--accent)}
-.rq,.hyp{background:var(--panel);border-left:4px solid var(--accent);padding:.9rem 1.2rem;margin:.9rem 0}
-.rq b,.hyp b{display:block;margin-bottom:.2rem}
-.hyp p{margin:.3rem 0}
-.note{background:var(--note);border:1px solid var(--line);padding:.8rem 1rem;margin:1rem 0;font-size:.95rem}
-.scroll{overflow-x:auto}
-table{border-collapse:collapse;width:100%;background:var(--panel);font-size:.92rem}
-th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
-th{background:var(--bg)}
-td.n{text-align:right;font-variant-numeric:tabular-nums}
-.btn{display:inline-block;background:var(--accent);color:#fff;padding:.7rem 1.2rem;text-decoration:none;font-weight:600}
-@media (prefers-color-scheme:dark){.btn{color:#10171c}}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-a{color:var(--accent)}
-ol,ul{max-width:70ch}
-footer{max-width:900px;margin:3rem auto;padding:1.5rem 1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-@media (max-width:600px){h1{font-size:2rem}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 132 Portfolio • Group 5 | Peso Depreciation & Philippine CPI Dynamics</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        bgMain: '#080c14',
+                        bgCard: '#111827',
+                        bgElevated: '#1a2336',
+                        accentGold: '#f59e0b',
+                        accentRose: '#f43f5e',
+                        accentTeal: '#14b8a6',
+                        accentIndigo: '#6366f1',
+                        accentPink: '#ec4899'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Editorial & Portfolio Styling inspired by CS 132 Portfolio */
+        body {
+            background-color: #080c14;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Ambient Grid & Glow */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Editorial Highlighted Text Spans (Reference Site Signature Style) */
+        .highlight-gold {
+            background: linear-gradient(120deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.08) 100%);
+            color: #fbbf24;
+            padding: 0.08em 0.35em;
+            border-radius: 0.35rem;
+            border-bottom: 2px solid rgba(245, 158, 11, 0.55);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .highlight-rose {
+            background: linear-gradient(120deg, rgba(244, 63, 94, 0.22) 0%, rgba(244, 63, 94, 0.08) 100%);
+            color: #fb7185;
+            padding: 0.08em 0.35em;
+            border-radius: 0.35rem;
+            border-bottom: 2px solid rgba(244, 63, 94, 0.55);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .highlight-teal {
+            background: linear-gradient(120deg, rgba(20, 184, 166, 0.22) 0%, rgba(20, 184, 166, 0.08) 100%);
+            color: #2dd4bf;
+            padding: 0.08em 0.35em;
+            border-radius: 0.35rem;
+            border-bottom: 2px solid rgba(20, 184, 166, 0.55);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        /* Decorative 3-dot Divider from CS132 Reference Site */
+        .dot-divider {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .dot-divider span {
+            display: inline-block;
+            height: 8px;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .dot-divider span:nth-child(1) { width: 36px; background: #f59e0b; }
+        .dot-divider span:nth-child(2) { width: 12px; background: #f43f5e; }
+        .dot-divider span:nth-child(3) { width: 12px; background: #14b8a6; }
+
+        /* Glass Card */
+        .portfolio-card {
+            background: rgba(17, 24, 39, 0.82);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .portfolio-card:hover {
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(245, 158, 11, 0.12);
+        }
+
+        /* Math Formula Box */
+        .math-block {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(8, 12, 20, 0.85);
+            border-left: 3px solid #f59e0b;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+
+        /* Active Nav Link */
+        .nav-link.active {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            height: 2px;
+            background: #f59e0b;
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+    </style>
 </head>
-<body>
-<nav>
-  <a href="#home">Home</a>
-  <a href="#background">Background</a>
-  <a href="#questions">Research questions</a>
-  <a href="#hypotheses">Hypotheses</a>
-  <a href="#approach">Approach</a>
-  <a href="#data">Data</a>
-  <a href="#sheet">Google Sheet</a>
-  <a href="#team">Team</a>
-</nav>
+<body class="bg-grid-pattern antialiased selection:bg-amber-500 selection:text-slate-950">
 
-<header id="home">
-  <h1>Unequal Prices?</h1>
-  <p class="sub">Analyzing the impact of currency depreciation on regional inflation in the Philippines</p>
-  <p class="meta">CS 132 · Group 5 · ICPING EKONOMIYA · SDG 8: Decent Work and Economic Growth</p>
-  <div class="stats">
-    <div class="stat"><b>56</b>months, Jan 2022 – Aug 2026</div>
-    <div class="stat"><b>18</b>administrative regions</div>
-    <div class="stat"><b>14</b>CPI items (All Items + 13 food categories)</div>
-    <div class="stat"><b>14,112</b>panel observations</div>
-  </div>
-</header>
+    <!-- Ambient Radial Glows -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/4 right-10 w-96 h-96 bg-rose-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="fixed top-1/2 left-10 w-80 h-80 bg-teal-500/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
 
-<main>
-<section id="background">
-  <h2>Background and motivation</h2>
-  <p>The peso is not stable against the US dollar. In our dataset, the monthly average rate moved from about ₱51.2 per USD in January 2022 to about ₱61.4 per USD in May 2026. A weaker peso makes imported goods and imported inputs, such as fuel, fertilizer, and feed, more expensive, and that cost can pass through to consumer prices.</p>
-  <p>That pass-through may not be even. The Philippines is an archipelago, and goods reach different regions through different inter-island supply chains. Two regions facing the same exchange-rate shock could therefore see different price increases. National inflation figures hide this difference.</p>
-  <p>This project investigates how national exchange-rate volatility translates into unequal price burdens across the 18 administrative regions. It connects to SDG 8 because currency shocks and inflation affect macroeconomic stability and how evenly economic development reaches different parts of the country.</p>
+    <!-- ================= STICKY HEADER & NAVIGATION ================= -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand / Group Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 via-rose-500 to-indigo-600 p-[1.5px] shadow-lg shadow-amber-500/10">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                        <span class="font-mono font-bold text-lg text-amber-400 group-hover:scale-110 transition-transform">₱</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-extrabold tracking-tight text-white text-sm sm:text-base">CS 132</span>
+                        <span class="text-[11px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold">Group 5</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden sm:block">FX Pass-Through & Philippine CPI Portfolio</p>
+                </div>
+            </a>
 
-  <h3>What we propose</h3>
-  <p>We build a regional panel dataset that joins monthly PHP/USD exchange rates from the Bangko Sentral ng Pilipinas (BSP) with monthly regional Consumer Price Index (CPI) data from the Philippine Statistics Authority (PSA). We then compare how CPI responds to peso depreciation overall, across regions, and within food categories.</p>
-</section>
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-300">
+                <a href="#home" class="nav-link hover:text-amber-400 transition-colors py-1">Home</a>
+                <a href="#overview" class="nav-link hover:text-amber-400 transition-colors py-1">Overview</a>
+                <a href="#background" class="nav-link hover:text-amber-400 transition-colors py-1">Background</a>
+                <a href="#questions" class="nav-link hover:text-amber-400 transition-colors py-1">Research Questions</a>
+                <a href="#methods" class="nav-link hover:text-amber-400 transition-colors py-1">Data & Methods</a>
+                <a href="#results" class="nav-link hover:text-amber-400 transition-colors py-1">Results & EDA</a>
+                <a href="#nutshell" class="nav-link hover:text-amber-400 transition-colors py-1">Nutshell Plot</a>
+                <a href="#conclusion" class="nav-link hover:text-amber-400 transition-colors py-1">Conclusion</a>
+                <a href="#team" class="nav-link hover:text-amber-400 transition-colors py-1">Team</a>
+            </nav>
 
-<section id="questions">
-  <h2>Research questions</h2>
-  <div class="rq"><b>RQ1</b>What is the statistical relationship between the rate of peso depreciation and the overall growth of the Philippine Consumer Price Index (CPI)?</div>
-  <div class="rq"><b>RQ2</b>Is there a significant difference in how peso depreciation impacts the CPI across different regions in the Philippines?</div>
-  <div class="rq"><b>RQ3</b>How does peso depreciation affect the Food CPI as a whole?</div>
-</section>
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <a href="#simulator" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3.5 py-2 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 transition-all">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>CPI Simulator</span>
+                </a>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
 
-<section id="hypotheses">
-  <h2>Research hypotheses</h2>
-  <div class="hyp"><b>RQ1</b>
-    <p><strong>H₀:</strong> Peso depreciation does not correspond to a systematic change in the growth rate of the Philippine Consumer Price Index (CPI).</p>
-    <p><strong>H₁:</strong> Peso depreciation corresponds to a systematic change in the growth rate of the Philippine Consumer Price Index (CPI).</p>
-  </div>
-  <div class="hyp"><b>RQ2</b>
-    <p><strong>H₀:</strong> There is no significant difference in the magnitude of CPI increase across different regions in the Philippines during periods of peso depreciation.</p>
-    <p><strong>H₁:</strong> Some regions experience a significantly higher increase in CPI compared to others during periods of peso depreciation, due to higher inter-island logistics sensitivity.</p>
-  </div>
-  <div class="hyp"><b>RQ3</b>
-    <p><strong>H₀:</strong> Food CPI responds at a similar rate following peso depreciation.</p>
-    <p><strong>H₁:</strong> Food CPI responds at different rates following peso depreciation.</p>
-  </div>
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-5 space-y-2 text-sm">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Home</a>
+            <a href="#overview" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Overview</a>
+            <a href="#background" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Background</a>
+            <a href="#questions" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Research Questions & Hypotheses</a>
+            <a href="#methods" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Data & Methods</a>
+            <a href="#results" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Results & Interactive EDA</a>
+            <a href="#nutshell" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Nutshell Plot</a>
+            <a href="#conclusion" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Conclusion</a>
+            <a href="#team" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-900 text-amber-400 font-semibold">Meet the Team</a>
+        </div>
+    </header>
 
-  <h3>Objectives</h3>
-  <ol>
-    <li>Construct a dataset of PHP/USD exchange rates and monthly regional CPI data from 2022 to 2026 across all 18 administrative regions.</li>
-    <li>Compare the magnitude of CPI growth across regions during periods of peso depreciation.</li>
-    <li>Evaluate price response rates and trends within the Food CPI category following peso depreciation.</li>
-  </ol>
-</section>
+    <!-- ================= 1. HERO SECTION (#home) ================= -->
+    <section id="home" class="relative pt-28 pb-20 md:pt-36 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="max-w-4xl">
+            <!-- Eyebrow -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-amber-400 mb-6">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>CS 132 DATA SCIENCE PORTFOLIO • GROUP 5</span>
+            </div>
 
-<section id="approach">
-  <h2>Proposed Approach</h2>
-  <div class="note"></div>
-  <ul>
-    <li>
-      <strong>Data Preparation and Derived Fields.</strong>
-      Clean and integrate the PSA CPI and BSP exchange-rate data by region, item, and month. 
-      Compute <strong>Peso Depreciation (%)</strong> from the monthly average USD/PHP exchange rate 
-      and <strong>Inflation (%)</strong> from the CPI values.
-    </li>
+            <!-- Hero Statement Headline (Inspired by reference site's span styling) -->
+            <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                When the Peso <span class="highlight-rose">Weakens</span>, How Fast Does the <span class="highlight-gold">Filipino Basket</span> Feel the Heat?
+            </h1>
 
-    <li>
-      <strong>Descriptive Statistics.</strong>
-      Summarize the dataset using measures such as the 
-      <strong>mean, median, standard deviation, minimum, and maximum</strong> 
-      for CPI growth, Food CPI/inflation, and peso depreciation. 
-      We will also summarize these measures by <strong>region, food category, and time period</strong> 
-      to establish the overall patterns in the data.
-    </li>
+            <!-- Reference Site Signature 3-Bar Divider -->
+            <div class="dot-divider">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-    <li>
-      <strong>Exploratory Data Analysis.</strong>
-      Use <strong>time-series plots, regional comparisons, and scatter plots</strong> 
-      to visualize trends in peso depreciation and CPI growth, identify regional and 
-      food-category differences, and examine the apparent relationship between depreciation 
-      and inflation before conducting hypothesis tests.
-    </li>
+            <!-- Subtitle / Abstract -->
+            <p class="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-3xl font-normal">
+                An empirical statistical investigation into the relationship between <strong class="text-white font-semibold">Philippine Peso (PHP/USD) depreciation</strong>, regional <strong class="text-white font-semibold">Consumer Price Index (CPI)</strong> disparities across Luzon, Visayas, and Mindanao, and <strong class="text-white font-semibold">Food CPI pass-through lag dynamics</strong> from 2022 to 2026.
+            </p>
 
-    <li>
-      <strong>Statistical Assumption Checks.</strong>
-      Check the relevant assumptions for the planned statistical tests, including 
-      <strong>normality</strong> and the presence of potential outliers. 
-      The results of these checks will determine whether a <strong>parametric or non-parametric</strong> 
-      statistical test is appropriate.
-    </li>
+            <!-- Hero CTA Row -->
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+                <a href="#results" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-display font-bold text-sm shadow-lg shadow-amber-500/20 transition-all">
+                    <span>Explore EDA & Findings</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#questions" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium text-sm transition-all">
+                    <i class="fa-solid fa-flask text-amber-400"></i>
+                    <span>View Hypotheses & Tests</span>
+                </a>
+                <a href="#team" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 border border-slate-800 font-medium text-sm transition-all">
+                    <i class="fa-solid fa-users text-teal-400"></i>
+                    <span>Meet Group 5</span>
+                </a>
+            </div>
+        </div>
 
-    <li>
-      <strong>RQ1 — National Relationship.</strong>
-      Examine the statistical relationship between <strong>peso depreciation and overall CPI growth</strong> 
-      at the national level using correlation analysis. 
-      We will also examine <strong>lagged depreciation</strong> to determine whether changes in the 
-      exchange rate are associated with CPI changes after a delay.
-    </li>
+        <!-- Quick KPI Metric Pills Strip -->
+        <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="portfolio-card rounded-2xl p-5">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span>RQ1 • NATIONAL CPI vs. FX</span>
+                    <span class="px-2 py-0.5 rounded bg-rose-500/15 text-rose-400 border border-rose-500/30">p &lt; 0.001</span>
+                </div>
+                <div class="text-2xl sm:text-3xl font-display font-extrabold text-white">ρ = 0.5718</div>
+                <p class="text-xs text-slate-400 mt-1">Moderate-to-strong positive monotonic correlation (<span class="text-slate-200 font-mono">N = 41</span> YoY mos)</p>
+            </div>
 
-    <li>
-      <strong>RQ2 — Regional Differences.</strong>
-      Compare <strong>CPI growth across the 18 Philippine regions</strong> during periods of peso depreciation 
-      and statistically test whether the observed regional differences are significant.
-    </li>
+            <div class="portfolio-card rounded-2xl p-5">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span>RQ2 • REGIONAL DISPARITY</span>
+                    <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">p = 0.7408</span>
+                </div>
+                <div class="text-2xl sm:text-3xl font-display font-extrabold text-white">H = 0.5999</div>
+                <p class="text-xs text-slate-400 mt-1">Uniform impact across Luzon, Visayas & Mindanao (<span class="text-slate-200 font-mono">N = 540</span> obs)</p>
+            </div>
 
-    <li>
-      <strong>RQ3 — Food Category Response.</strong>
-      Examine how the <strong>13 food categories</strong> respond to peso depreciation, 
-      comparing the magnitude and timing of their inflation responses to determine whether 
-      some categories respond differently or more quickly than others.
-    </li>
+            <div class="portfolio-card rounded-2xl p-5">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span>RQ3 • FOOD PASS-THROUGH</span>
+                    <span class="px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30">R² = 68.3%</span>
+                </div>
+                <div class="text-2xl sm:text-3xl font-display font-extrabold text-white">+2.934 pts/₱</div>
+                <p class="text-xs text-slate-400 mt-1">OLS slope (<span class="text-slate-200 font-mono">r = 0.8264, p &lt; 0.0001</span>) across 13 food categories</p>
+            </div>
 
-    <li>
-      <strong>Hypothesis Testing and Interpretation.</strong>
-      Report the appropriate <strong>test statistic, p-value, effect or relationship measure, 
-      and confidence interval where applicable</strong>. Results will be interpreted in relation 
-      to the research questions without treating statistical association as proof of causation.
-    </li>
-  </ul>
-</section>
+            <div class="portfolio-card rounded-2xl p-5">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span>TRANSMISSION DELAY</span>
+                    <span class="px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">p = 0.0141</span>
+                </div>
+                <div class="text-2xl sm:text-3xl font-display font-extrabold text-white">2–3 Months</div>
+                <p class="text-xs text-slate-400 mt-1">Peak MoM food inflation lag (<span class="text-slate-200 font-mono">r = 0.3487</span> at Lag 3m) + sticky prices</p>
+            </div>
+        </div>
+    </section>
 
-<section id="data">
-  <h2>Dataset</h2>
+    <!-- ================= 2. OVERVIEW SECTION (#overview) ================= -->
+    <section id="overview" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-3">Overview</div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <!-- Left Column: Big Editorial Statement (like reference site) -->
+            <div class="lg:col-span-7">
+                <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-snug">
+                    While exchange rate fluctuations happen in global currency markets, <span class="highlight-gold">their ripple effects hit domestic grocery shelves</span> — systematically driving up national headline inflation and creating <span class="highlight-rose">sticky food price hikes</span> that refuse to come down even when the peso recovers.
+                </h2>
+                <div class="dot-divider">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                    As an import-dependent archipelago, the Philippines relies heavily on foreign-denominated fuel, fertilizers, wheat, feed inputs, and food commodities. Understanding how <span class="font-mono text-slate-200">PHP/USD</span> exchange rate shocks propagate across 18 administrative regions and 13 food subcategories is vital for timely monetary and agricultural policy intervention.
+                </p>
+            </div>
 
-  <h3>Sources</h3>
-  <table>
-    <tr><th>Source</th><th>Content</th><th>Access</th></tr>
-    <tr><td>Bangko Sentral ng Pilipinas (BSP)</td><td>Monthly reference exchange rate bulletins (PHP per USD), used to measure peso depreciation, 2022–2026</td><td>Downloadable from the BSP Statistics Database</td></tr>
-    <tr><td>Philippine Statistics Authority (PSA) OpenStat</td><td>Monthly regional CPI tables for All Items and Food categories, all 18 administrative regions</td><td>Downloadable from the PSA OpenStat portal</td></tr>
-  </table>
-  <p>The CPI follows the PSA's 2018-based series: 2018 is the base year and the index is set to 100. CPI values are index points, not pesos.</p>
+            <!-- Right Column: Problem & Solution Stacked Cards -->
+            <div class="lg:col-span-5 space-y-5">
+                <div class="portfolio-card rounded-2xl p-6 border-l-4 border-l-rose-500">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-400 flex items-center justify-center">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white">Problem</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        When the Philippine Peso depreciates against the US Dollar, households experience rising living costs. However, three empirical questions remain contested: (1) how strongly annual peso depreciation tracks national headline CPI, (2) whether inter-island shipping sensitivities cause unequal inflation spikes across Luzon, Visayas, and Mindanao, and (3) how many months it takes for FX shocks to hit retail Food CPI.
+                    </p>
+                </div>
 
-  <h3>Collection process and sampling</h3>
-  <p>We did not collect prices ourselves. The underlying figures come from the agencies' own collection: the PSA's retail price surveys and the BSP's tracking of interbank foreign exchange, which produces daily reference rates. We extracted the published data as two raw Excel spreadsheets, one per source, and integrated them into one dataset. No sampling was applied. We use all available monthly observations for all 18 regions and all 14 items from January 2022 to August 2026.</p>
+                <div class="portfolio-card rounded-2xl p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-400 flex items-center justify-center">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white">Solution</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Using overlapping PSA Consumer Price Index and BSP PHP/USD exchange rate series (2022–2026), we conduct normality-guided non-parametric and parametric hypothesis testing (<strong class="text-white">Spearman ρ, Pearson r, Kruskal-Wallis H, One-Way ANOVA, and Lagged OLS Pass-Through Modeling</strong>) to isolate national, regional, and food-sector sensitivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <h3>Size</h3>
-  <table>
-    <tr><th>Measure</th><th>Value</th></tr>
-    <tr><td>Time coverage</td><td>56 months (Jan 2022 – Aug 2026)</td></tr>
-    <tr><td>Regions</td><td>18</td></tr>
-    <tr><td>Items</td><td>14 (All Items + 13 food categories)</td></tr>
-    <tr><td>Total observations</td><td>14,112 (18 regions × 14 items × 56 months)</td></tr>
-    <tr><td>Currently usable observations</td><td>13,356</td></tr>
-    <tr><td>Unavailable observations</td><td>756 (BSP exchange rates not yet released for June–August 2026)</td></tr>
-  </table>
-  <p>Unreleased BSP values are kept as NA. They are not estimated or imputed.</p>
+    <!-- ================= 3. BACKGROUND SECTION (#background) ================= -->
+    <section id="background" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="max-w-4xl">
+            <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-3">Background</div>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
+                Imported Inflation, <span class="highlight-teal">Archipelagic Supply Chains</span>, and Downward Price Rigidity
+            </h2>
+            <div class="dot-divider">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p class="text-slate-300 text-base leading-relaxed">
+                Between 2022 and 2026, the Philippine economy navigated turbulent global monetary tightening, energy cost volatility, and recurring currency depreciation waves pushing the <span class="font-mono text-amber-300">USD/PHP</span> exchange rate from ₱51.30 to over ₱61.00. We examine this macroeconomic phenomenon through three interconnected analytical lenses:
+            </p>
+        </div>
 
-  <h3>Preprocessing</h3>
-  <ol>
-    <li><strong>Structural cleaning and unpivoting.</strong> The raw spreadsheets were reshaped into long format with one row per region, item, and month (18 regions × 14 items).</li>
-    <li><strong>Key and string normalization.</strong> Temporal keys (year and month) and text labels were normalized across the 56 monthly periods so the two sources could be joined.</li>
-    <li><strong>Relational integration.</strong> The monthly average USD/PHP rate was attached to every region–item–month row, producing 14,112 panel records.</li>
-    <li><strong>Calculated fields.</strong> Food inflation (%) and peso depreciation (%) are derived from the CPI and exchange-rate columns.</li>
-  </ol>
+        <!-- 3 Reference/Dimension Cards (Inspired by the reference cards in CS132 portfolio) -->
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono text-amber-400 mb-4">
+                        <span>DIMENSION 01 • MACRO</span>
+                        <i class="fa-solid fa-globe text-base"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">
+                        Headline Exchange Rate Pass-Through (ERPT)
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Evaluates whether Year-over-Year (YoY) Peso depreciation systematically co-moves with National Headline CPI growth across 41 valid overlapping monthly observations (Jan 2023 – May 2026).
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                    <span>PSA & BSP Series</span>
+                    <span class="text-amber-400">N = 41 Months →</span>
+                </div>
+            </div>
 
-  <h3>Quality checks</h3>
-  <div class="scroll"><table>
-    <tr><th>Check</th><th>What we verified</th><th>Result</th></tr>
-    <tr><td>Completeness</td><td>Missing CPI observations</td><td>No missing CPI values</td></tr>
-    <tr><td>Exchange-rate availability</td><td>BSP exchange-rate fields</td><td>756 observations unavailable because of unreleased BSP data (limitation)</td></tr>
-    <tr><td>Duplicate records</td><td>Duplicate region × item × month combinations</td><td>0 duplicates</td></tr>
-    <tr><td>Time coverage</td><td>Monthly observations, Jan 2022 – Aug 2026</td><td>56 months</td></tr>
-    <tr><td>Geographic coverage</td><td>All regional entries</td><td>18 regions</td></tr>
-    <tr><td>Category consistency</td><td>CPI item and category labels</td><td>Consistent across the dataset</td></tr>
-  </table></div>
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono text-rose-400 mb-4">
+                        <span>DIMENSION 02 • SPATIAL</span>
+                        <i class="fa-solid fa-map-location-dot text-base"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">
+                        Inter-Island & Regional Logistics Sensitivity
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Tests whether island groups (<strong class="text-slate-200">Luzon, Visayas, Mindanao</strong>) and all <strong class="text-slate-200">18 administrative regions</strong> experience divergent Month-over-Month (MoM) CPI spikes during the 30 months where the Peso depreciated (<span class="font-mono">ΔFX &gt; 0</span>).
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                    <span>18 Regions × 30 Depr. Mos</span>
+                    <span class="text-rose-400">N = 540 Obs →</span>
+                </div>
+            </div>
 
-  <h3>Sample rows</h3>
-  <div class="scroll"><table>
-    <tr><th>Region</th><th>Item</th><th>Year</th><th>Month</th><th>CPI value</th><th>USD/PHP average</th></tr>
-    <tr><td>National Capital Region (NCR)</td><td>0 - ALL ITEMS</td><td>2022</td><td>Jan</td><td class="n">108.8</td><td class="n">51.2353</td></tr>
-    <tr><td>National Capital Region (NCR)</td><td>01.1.1.1 - Cereals (ND)</td><td>2022</td><td>Jan</td><td class="n">97.4074</td><td class="n">51.2353</td></tr>
-    <tr><td>CAR</td><td>01.1.2 - Meat and other parts of slaughtered land animals (ND)</td><td>2022</td><td>Jan</td><td class="n">125.6</td><td class="n">51.2353</td></tr>
-    <tr><td>Region I (Ilocos Region)</td><td>01.1.3 - Fish and other seafood (ND)</td><td>2022</td><td>Jan</td><td class="n">123.8</td><td class="n">51.2353</td></tr>
-  </table></div>
-</section>
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between text-xs font-mono text-teal-400 mb-4">
+                        <span>DIMENSION 03 • SECTORAL</span>
+                        <i class="fa-solid fa-wheat-awn text-base"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">
+                        Food CPI Transmission Lag & Price Stickiness
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Analyzes the national composite Food CPI across <strong class="text-slate-200">13 food subcategories</strong> to measure how long import letters of credit, shipping, and wholesale inventory costs take to reach retail markets—and whether food prices fall when the Peso appreciates.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                    <span>Lag 0m to 6m + Regimes</span>
+                    <span class="text-teal-400">n = 53 Index Obs →</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="sheet">
-  <h2>Google Sheet</h2>
-  <p>The full merged dataset is available as a Google Sheet.</p>
-  <p><a class="btn" href="https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?usp=sharing" target="_blank" rel="noopener">Open the dataset in Google Sheets</a></p>
-</section>
+    <!-- ================= 4. RESEARCH QUESTIONS & HYPOTHESES (#questions) ================= -->
+    <section id="questions" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-3">This led us to ask,</div>
+        <h2 class="font-display text-2xl sm:text-4xl font-bold text-white mb-10">
+            Research Questions & Statistical Hypotheses
+        </h2>
 
-<section id="team">
-  <h2>Team</h2>
-  <p>CS 132, Group 5 (ICPING EKONOMIYA)</p>
-  <ul>
-    <li>John Ray Aranas</li>
-    <li>Sophia Reizel Bonitez</li>
-    <li>Paula Marie Tagle</li>
-  </ul>
-  <h3>References</h3>
-  <ol>
-    <li>Bangko Sentral ng Pilipinas. Statistics Database: reference exchange rate bulletins. <a href="https://www.bsp.gov.ph">bsp.gov.ph</a></li>
-    <li>Philippine Statistics Authority. OpenStat: Consumer Price Index (2018=100), by region. <a href="https://openstat.psa.gov.ph">openstat.psa.gov.ph</a></li>
-    <li>United Nations. Sustainable Development Goal 8: Decent work and economic growth. <a href="https://sdgs.un.org/goals/goal8">sdgs.un.org/goals/goal8</a></li>
-  </ol>
-</section>
-</main>
-<footer>CS 132 · Group 5 · ICPING EKONOMIYA</footer>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- RQ 1 Card -->
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between border-t-4 border-t-pink-500">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-pink-500/15 text-pink-400 border border-pink-500/30">
+                            RESEARCH QUESTION 01
+                        </span>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30 font-semibold">
+                            <i class="fa-solid fa-check mr-1"></i>Reject H₀
+                        </span>
+                    </div>
+
+                    <h3 class="font-display font-bold text-lg text-white leading-snug mb-5">
+                        "What is the statistical relationship between the rate of peso depreciation and the overall growth of the Philippine Consumer Price Index (CPI)?"
+                    </h3>
+
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="font-mono font-bold text-slate-400 mb-1">Null Hypothesis (H₀)</div>
+                            <p class="text-slate-300">Peso depreciation does not correspond to a systematic change in the growth rate of the Philippine Consumer Index (CPI).</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-pink-500/10 border border-pink-500/30">
+                            <div class="font-mono font-bold text-pink-300 mb-1">Alternative Hypothesis (H₁)</div>
+                            <p class="text-slate-200">Peso depreciation corresponds to a systematic change in the growth rate of the Philippine Consumer Index (CPI).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
+                    <span>Spearman ρ = 0.5718</span>
+                    <span class="text-pink-400 font-bold">p = 9.42 × 10⁻⁵</span>
+                </div>
+            </div>
+
+            <!-- RQ 2 Card -->
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between border-t-4 border-t-amber-500">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                            RESEARCH QUESTION 02
+                        </span>
+                        <span class="text-xs font-mono text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/30 font-semibold">
+                            <i class="fa-solid fa-scale-balanced mr-1"></i>Fail to Reject H₀
+                        </span>
+                    </div>
+
+                    <h3 class="font-display font-bold text-lg text-white leading-snug mb-5">
+                        "Is there a significant difference in how peso depreciation impacts the CPI across different regions in the Philippines?"
+                    </h3>
+
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
+                            <div class="font-mono font-bold text-amber-300 mb-1">Null Hypothesis (H₀ — Supported)</div>
+                            <p class="text-slate-200">There is no significant difference in the magnitude of CPI increase across different regions in the Philippines during periods of peso depreciation.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="font-mono font-bold text-slate-400 mb-1">Alternative Hypothesis (H₁)</div>
+                            <p class="text-slate-300">Some regions experience a significantly higher increase in CPI compared to others during periods of peso depreciation due to higher inter-island logistics sensitivity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
+                    <span>Kruskal-Wallis H = 0.5999</span>
+                    <span class="text-amber-400 font-bold">p = 0.7408 (&gt; 0.05)</span>
+                </div>
+            </div>
+
+            <!-- RQ 3 Card -->
+            <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between border-t-4 border-t-teal-500">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-teal-500/15 text-teal-300 border border-teal-500/30">
+                            RESEARCH QUESTION 03
+                        </span>
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30 font-semibold">
+                            <i class="fa-solid fa-check mr-1"></i>Reject H₀ (Lag 3–4m)
+                        </span>
+                    </div>
+
+                    <h3 class="font-display font-bold text-lg text-white leading-snug mb-5">
+                        "How does the peso depreciation affect the Food CPI as a whole?"
+                    </h3>
+
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="font-mono font-bold text-slate-400 mb-1">Null Hypothesis (H₀: β₁ = 0)</div>
+                            <p class="text-slate-300">Food CPI responds at a similar rate following peso depreciation (no significant pass-through elasticity or lagged differentiation).</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/30">
+                            <div class="font-mono font-bold text-teal-300 mb-1">Alternative Hypothesis (H₁: β₁ &gt; 0)</div>
+                            <p class="text-slate-200">Food CPI responds at different rates following peso depreciation, exhibiting strong index pass-through and significant 2–3 month delayed transmission.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
+                    <span>OLS r = 0.8264 (p &lt; 0.0001)</span>
+                    <span class="text-teal-400 font-bold">Lag 3m r = 0.3487</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. DATA COLLECTION & METHODS (#methods) ================= -->
+    <section id="methods" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Left Column: Scope Keywords & Tools (Inspired by reference site's Key Words & Tools blocks) -->
+            <div class="lg:col-span-5 space-y-8">
+                <div>
+                    <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">Data Collection</div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
+                        Key Variables & Analytical Scope
+                    </h2>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-5">
+                        To ensure rigorous time-series alignment across national, regional, and commodity-level indicators, we extracted official monthly Consumer Price Index (2018=100) records from the <strong class="text-slate-200">Philippine Statistics Authority (PSA)</strong> and monthly PHP/USD exchange rates from the <strong class="text-slate-200">Bangko Sentral ng Pilipinas (BSP)</strong>.
+                    </p>
+
+                    <!-- Key Scope Pills -->
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-amber-300">National CPI YoY (%)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-pink-300">PHP/USD YoY & MoM (%)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-teal-300">18 Administrative Regions</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-indigo-300">3 Island Groups (Luzon, Visayas, Mindanao)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-emerald-300">13 Food Subcategories</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300">Depreciation Filter (ΔFX &gt; 0)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300">Jan 2022 – Aug 2026 Window</span>
+                    </div>
+                </div>
+
+                <!-- Tools Used Card (Matching reference site's Tools section) -->
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-4">Tools & Scientific Stack</div>
+                    <div class="grid grid-cols-3 sm:grid-cols-3 gap-3">
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-brands fa-python text-2xl text-amber-400"></i>
+                            <span class="text-xs font-medium text-slate-200">Python 3</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-solid fa-table text-2xl text-indigo-400"></i>
+                            <span class="text-xs font-medium text-slate-200">Pandas & NumPy</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-solid fa-square-root-variable text-2xl text-teal-400"></i>
+                            <span class="text-xs font-medium text-slate-200">SciPy Stats</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-solid fa-chart-area text-2xl text-rose-400"></i>
+                            <span class="text-xs font-medium text-slate-200">Matplotlib</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-solid fa-chart-simple text-2xl text-pink-400"></i>
+                            <span class="text-xs font-medium text-slate-200">Seaborn / OLS</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center gap-1.5">
+                            <i class="fa-solid fa-laptop-code text-2xl text-emerald-400"></i>
+                            <span class="text-xs font-medium text-slate-200">Google Colab</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Numbered Methodology Cards (01, 02, 03 like reference site) -->
+            <div class="lg:col-span-7 space-y-5">
+                <!-- 01 -->
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex items-start gap-4">
+                        <span class="font-mono text-2xl font-extrabold text-amber-400/90 bg-amber-500/10 border border-amber-500/30 rounded-xl px-3.5 py-2">01</span>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-lg text-white mb-2">Data Filtering & Variable Calculation</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                                We computed <strong class="text-white">Year-over-Year (YoY)</strong> growth rates for national aggregate CPI and exchange rate at month <span class="font-mono">t</span> relative to <span class="font-mono">t−12</span>, filtering out the initial 12-month baseline window (Jan–Dec 2022) and unreleased BSP exchange-rate observations (Jun–Aug 2026) to yield <strong class="text-amber-300 font-mono">N = 41</strong> overlapping months (Jan 2023 – May 2026):
+                            </p>
+                            <div class="math-block p-3.5 rounded-xl text-xs sm:text-sm text-amber-200 space-y-1.5 mb-3 overflow-x-auto">
+                                <div>CPI<sub>YoY</sub> = [ (CPI<sub>t</sub> − CPI<sub>t−12</sub>) / CPI<sub>t−12</sub> ] × 100</div>
+                                <div>FX<sub>YoY</sub> = [ (FX<sub>t</sub> − FX<sub>t−12</sub>) / FX<sub>t−12</sub> ] × 100</div>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                                For regional and food short-term dynamics, we calculated <strong class="text-white">Month-over-Month (MoM)</strong> percentage growth rates and applied a <strong class="text-white">Depreciation Months Filter (<span class="font-mono">ΔFX<sub>MoM</sub> &gt; 0</span>)</strong> across 30 depreciation months and 18 regions (<strong class="text-rose-300 font-mono">N = 540</strong> total: <span class="font-mono">Luzon = 240, Visayas = 120, Mindanao = 180</span>):
+                            </p>
+                            <div class="math-block p-3.5 rounded-xl text-xs sm:text-sm text-teal-200 overflow-x-auto">
+                                <div>CPIGrowth<sub>MoM (i,t)</sub> = [ (CPI<sub>i,t</sub> − CPI<sub>i,t−1</sub>) / CPI<sub>i,t−1</sub> ] × 100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 -->
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex items-start gap-4">
+                        <span class="font-mono text-2xl font-extrabold text-rose-400/90 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3.5 py-2">02</span>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-lg text-white mb-2">Normality Testing (Shapiro-Wilk Diagnostic Protocol)</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                                Before selecting inferential tests, each variable underwent <strong class="text-white">Shapiro-Wilk normality testing (<span class="font-mono">α = 0.05</span>)</strong> to choose between non-parametric rank tests and parametric benchmarks:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                    <div class="font-mono text-pink-400 font-bold mb-1">RQ1: National YoY</div>
+                                    <div class="text-slate-300 font-mono">p = 0.0315 &lt; 0.05</div>
+                                    <div class="text-slate-400 mt-1">Non-Normal → <strong class="text-slate-200">Spearman ρ</strong> primary + Pearson <span class="font-mono">r</span> check</div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                    <div class="font-mono text-amber-400 font-bold mb-1">RQ2: Regional MoM</div>
+                                    <div class="text-slate-300 font-mono">p &lt; 0.001</div>
+                                    <div class="text-slate-400 mt-1">Non-Normal → <strong class="text-slate-200">Kruskal-Wallis H</strong> + One-Way ANOVA <span class="font-mono">F</span></div>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                    <div class="font-mono text-teal-400 font-bold mb-1">RQ3: Food CPI</div>
+                                    <div class="text-slate-300 font-mono">Levels: p &lt; 0.05<br>MoM: p ≥ 0.26</div>
+                                    <div class="text-slate-400 mt-1">Levels Non-Normal; MoM Rates Normal (<span class="font-mono">W=0.989, 0.972</span>)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="portfolio-card rounded-2xl p-6">
+                    <div class="flex items-start gap-4">
+                        <span class="font-mono text-2xl font-extrabold text-teal-400/90 bg-teal-500/10 border border-teal-500/30 rounded-xl px-3.5 py-2">03</span>
+                        <div class="flex-1">
+                            <h3 class="font-display font-bold text-lg text-white mb-2">Kruskal-Wallis H-Test & Dynamic Lagged OLS Pass-Through</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                                Regional equality across island groups (<span class="font-mono">k = 3, N = 540</span>) and all 18 regions (<span class="font-mono">df = 17</span>) was tested using the Kruskal-Wallis rank-sum statistic, while Food CPI elasticity and transmission delays (<span class="font-mono">Lag 0m to Lag 6m</span>) were modeled via Ordinary Least Squares (OLS):
+                            </p>
+                            <div class="math-block p-3.5 rounded-xl text-xs sm:text-sm text-indigo-200 space-y-1.5 overflow-x-auto">
+                                <div>H = [ 12 / (N(N + 1)) ] × ∑ (R<sub>j</sub>² / n<sub>j</sub>) − 3(N + 1)</div>
+                                <div>Predicted Food CPI = 36.1964 + 2.9340 × Exchange Rate &nbsp;(R² = 0.6830)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 6. INTERACTIVE RESULTS & EDA SECTION (#results) ================= -->
+    <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">Exploratory Data Analysis & Hypothesis Testing</div>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+                    Empirical Results & Interactive Visualizations
+                </h2>
+            </div>
+
+            <!-- View Mode Toggle (All Stacked vs. Focused Tab) -->
+            <div class="inline-flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 self-start">
+                <button onclick="filterEDASection('all')" id="tabBtn-all" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold bg-amber-500 text-slate-950 transition-all">
+                    Show All (1–3)
+                </button>
+                <button onclick="filterEDASection('rq1')" id="tabBtn-rq1" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                    RQ1: National
+                </button>
+                <button onclick="filterEDASection('rq2')" id="tabBtn-rq2" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                    RQ2: Regional
+                </button>
+                <button onclick="filterEDASection('rq3')" id="tabBtn-rq3" class="eda-tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold text-slate-300 hover:text-white transition-all">
+                    RQ3: Food CPI
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== MODULE 1: RQ 1 (NATIONAL CPI vs PESO DEPRECIATION) ==================== -->
+        <div id="eda-module-rq1" class="mb-16 space-y-6">
+            <div class="portfolio-card rounded-3xl p-6 sm:p-8 border border-pink-500/25">
+                <!-- Header Banner -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-wider text-pink-400 font-semibold">EDA & Hypothesis Test 01 • National Aggregate (N = 41 Months)</span>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-white mt-1">
+                            1. Rate of Peso Depreciation vs. Overall Growth of the Philippine CPI
+                        </h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold">
+                            Decision: Reject H₀ (p = 9.42e-05 &lt; 0.05)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Charts Grid: Panel A & Panel B -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                    <!-- Panel A -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                A. Year-over-Year (YoY) Growth Rates Over Time
+                            </h4>
+                            <span class="text-[11px] font-mono text-slate-400">Jan 2023 – Jul 2026</span>
+                        </div>
+                        <div class="relative h-72 sm:h-80 w-full">
+                            <canvas id="rq1PanelAChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Panel B -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                B. Correlation: YoY Depreciation vs. YoY Inflation
+                            </h4>
+                            <span class="text-[11px] font-mono text-pink-400">n = 41 mos • OLS 95% CI</span>
+                        </div>
+                        <div class="relative h-72 sm:h-80 w-full">
+                            <canvas id="rq1PanelBChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RQ1 Statistical Proof & Summary Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pt-6 border-t border-slate-800/80">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-slate-400">Normality (Shapiro-Wilk)</div>
+                            <div class="text-lg font-mono font-bold text-amber-300 mt-1">p = 0.0315 &lt; 0.05</div>
+                            <p class="text-xs text-slate-400 mt-1">Non-normal distribution; primary reliance on Spearman Rank (ρ).</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-pink-500/30">
+                            <div class="text-xs font-mono text-pink-400">Spearman Rank (Primary)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">ρ = 0.5718</div>
+                            <p class="text-xs text-slate-400 mt-1"><span class="font-mono text-slate-200">df = 39</span>, <span class="font-mono text-emerald-400">p = 9.42 × 10⁻⁵</span></p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-indigo-400">Pearson & OLS (Check)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">r = 0.6037</div>
+                            <p class="text-xs text-slate-400 mt-1"><span class="font-mono text-slate-200">t = 4.7292, df = 39</span>, <span class="font-mono text-emerald-400">p = 2.93 × 10⁻⁵</span></p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 p-4 rounded-xl bg-pink-500/10 border border-pink-500/25 flex flex-col justify-center">
+                        <div class="text-xs font-mono uppercase tracking-wider text-pink-300 font-bold mb-1">Statistical Interpretation & Summary</div>
+                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            At <span class="font-mono">α = 0.05</span>, <span class="font-mono">p = 9.42 × 10⁻⁵ &lt; 0.05</span>, so we <strong class="text-white">reject H₀</strong>. There is a statistically significant, moderate-to-strong positive monotonic relationship between annual peso depreciation and headline consumer price inflation, underscoring the Philippines' vulnerability to imported inflation across supply chains.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MODULE 2: RQ 2 (REGIONAL & ISLAND GROUP DISPARITY) ==================== -->
+        <div id="eda-module-rq2" class="mb-16 space-y-6">
+            <div class="portfolio-card rounded-3xl p-6 sm:p-8 border border-amber-500/25">
+                <!-- Header Banner -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold">EDA & Hypothesis Test 02 • Spatial & Island Group Disparity (N = 540 Obs)</span>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-white mt-1">
+                            2. Regional CPI Impact Across Luzon, Visayas, Mindanao & 18 Regions
+                        </h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold">
+                            Decision: Fail to Reject H₀ (H = 0.5999, p = 0.7408)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Charts Grid: Panel A (Island Groups) & Panel B (18 Administrative Regions) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+                    <!-- Panel A: Island Group Comparison -->
+                    <div class="lg:col-span-5 bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                    A. CPI MoM Growth Rate by Island Group
+                                </h4>
+                                <span class="text-[11px] font-mono text-amber-400">30 Depr. Months</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mb-4">
+                                Distribution summary during Peso Depreciation Months (<span class="font-mono">ΔFX<sub>MoM</sub> &gt; 0</span>, 2022–2026):
+                            </p>
+                            <div class="relative h-64 sm:h-72 w-full">
+                                <canvas id="rq2PanelAChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Exact Mean / Median Callout Badges from PDF -->
+                        <div class="grid grid-cols-3 gap-2.5 mt-4 pt-4 border-t border-slate-800/80 text-center">
+                            <div class="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30">
+                                <div class="text-xs font-bold text-blue-300">Luzon (N=240)</div>
+                                <div class="text-sm font-mono font-bold text-white mt-0.5">Mean: 0.432%</div>
+                                <div class="text-[11px] font-mono text-slate-400">Median: 0.309%</div>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-orange-500/10 border border-orange-500/30">
+                                <div class="text-xs font-bold text-orange-300">Visayas (N=120)</div>
+                                <div class="text-sm font-mono font-bold text-white mt-0.5">Mean: 0.425%</div>
+                                <div class="text-[11px] font-mono text-slate-400">Median: 0.380%</div>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/30">
+                                <div class="text-xs font-bold text-purple-300">Mindanao (N=180)</div>
+                                <div class="text-sm font-mono font-bold text-white mt-0.5">Mean: 0.437%</div>
+                                <div class="text-[11px] font-mono text-slate-400">Median: 0.254%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel B: All 18 Administrative Regions Horizontal Bar Chart -->
+                    <div class="lg:col-span-7 bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                B. Mean CPI MoM Growth Rate by Administrative Region (±SE)
+                            </h4>
+                            <span class="text-[11px] font-mono text-slate-400">All 18 Regions (p = 1.0000)</span>
+                        </div>
+                        <div class="relative h-[420px] w-full">
+                            <canvas id="rq2PanelBChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RQ2 Statistical Proof & Summary Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pt-6 border-t border-slate-800/80">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-amber-500/30">
+                            <div class="text-xs font-mono text-amber-400">Kruskal-Wallis (Islands)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">H = 0.5999</div>
+                            <p class="text-xs text-slate-400 mt-1"><span class="font-mono text-slate-200">df = 2</span>, <span class="font-mono text-amber-300">p = 0.7408</span> (Non-sig)</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-indigo-400">One-Way ANOVA (Check)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">F = 0.0093</div>
+                            <p class="text-xs text-slate-400 mt-1"><span class="font-mono text-slate-200">df = (2, 537)</span>, <span class="font-mono text-slate-300">p = 0.9907</span></p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-teal-400">Kruskal-Wallis (18 Reg)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">H = 2.5556</div>
+                            <p class="text-xs text-slate-400 mt-1"><span class="font-mono text-slate-200">df = 17</span>, <span class="font-mono text-slate-300">p = 1.0000</span></p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex flex-col justify-center">
+                        <div class="text-xs font-mono uppercase tracking-wider text-amber-300 font-bold mb-1">Statistical Interpretation & Summary</div>
+                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            Because <span class="font-mono">p = 0.7408 &gt; 0.05</span>, we <strong class="text-white">fail to reject H₀</strong>. Currency depreciation impacts regional consumer prices <strong class="text-amber-300">uniformly</strong> across Luzon (<span class="font-mono">0.432%</span>), Visayas (<span class="font-mono">0.425%</span>), and Mindanao (<span class="font-mono">0.437%</span>), proving exchange rate shocks act as a systemic nationwide macroeconomic burden rather than localized supply chain disparities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MODULE 3: RQ 3 (FOOD CPI PASS-THROUGH & LAG DYNAMICS) ==================== -->
+        <div id="eda-module-rq3" class="space-y-6">
+            <div class="portfolio-card rounded-3xl p-6 sm:p-8 border border-teal-500/25">
+                <!-- Header Banner -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold">EDA & Hypothesis Test 03 • Composite Food CPI Across 13 Subcategories & 18 Regions</span>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-white mt-1">
+                            3. Impact of Philippine Peso Depreciation on Food CPI (2022–2026)
+                        </h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs font-mono font-bold">
+                            Pass-Through r = 0.8264 (p &lt; 0.0001) • Peak Lag 3m (p = 0.0141)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 2x2 Quad Chart Grid (Panels A, B, C, D from Page 5 of PDF) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                    <!-- Panel A: Co-Movement -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                A. Co-Movement: USD/PHP vs. National Food CPI (2022–2026)
+                            </h4>
+                            <span class="text-[11px] font-mono text-slate-400">Dual Axis (2018=100)</span>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="rq3PanelAChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Panel B: Exchange Rate Pass-Through Elasticity -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                B. Exchange Rate Pass-Through Elasticity (n = 53)
+                            </h4>
+                            <span class="text-[11px] font-mono text-teal-400">R² = 0.6830 • β = +2.934 pts/₱</span>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="rq3PanelBChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Panel C: Dynamic Lag Structure -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                C. Dynamic Lag Structure: MoM FX Depreciation vs. Food Inflation
+                            </h4>
+                            <span class="text-[11px] font-mono text-teal-400">Teal = Significant at α = 0.05</span>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="rq3PanelCChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Panel D: MoM Food Inflation Distribution by FX Regime -->
+                    <div class="bg-slate-950/70 rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-display font-bold text-sm sm:text-base text-slate-100">
+                                D. MoM Food Inflation by FX Regime & Downward Stickiness
+                            </h4>
+                            <span class="text-[11px] font-mono text-rose-400">Appreciation vs. Depreciation</span>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="rq3PanelDChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive OLS Food CPI Pass-Through Simulator (#simulator) -->
+                <div id="simulator" class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/95 to-teal-950/40 border border-teal-500/30">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-7">
+                            <div class="inline-flex items-center gap-2 text-xs font-mono uppercase text-teal-400 mb-2">
+                                <i class="fa-solid fa-calculator"></i>
+                                <span>Interactive OLS Pass-Through Simulator (From RQ3 Regression Model)</span>
+                            </div>
+                            <h4 class="font-display text-lg sm:text-xl font-bold text-white mb-2">
+                                Simulate National Composite Food CPI at Any PHP/USD Exchange Rate
+                            </h4>
+                            <p class="text-xs sm:text-sm text-slate-300 mb-4">
+                                Drag the slider to test how a change in the <span class="font-mono text-amber-300">USD/PHP</span> exchange rate predicts the National Food CPI (<span class="font-mono">2018=100</span>) using our fitted OLS equation: <span class="font-mono text-teal-300">Predicted Food CPI = 36.1964 + 2.9340 × FX</span>.
+                            </p>
+
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs font-mono text-slate-400">
+                                    <span>₱50.00 (Stronger Peso)</span>
+                                    <span id="simCurrentFXLabel" class="text-amber-400 font-bold text-sm">Selected: ₱58.50 / USD</span>
+                                    <span>₱65.00 (Weaker Peso)</span>
+                                </div>
+                                <input id="fxSlider" type="range" min="50" max="65" step="0.1" value="58.5" class="w-full accent-teal-400 cursor-pointer h-2 bg-slate-800 rounded-lg">
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 text-center">
+                                <div class="text-xs font-mono text-slate-400">Predicted Food CPI</div>
+                                <div id="simPredictedCPI" class="text-2xl sm:text-3xl font-mono font-extrabold text-teal-400 mt-1">135.43</div>
+                                <div class="text-[11px] font-mono text-slate-400 mt-1">Index (Base 2018 = 100)</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 text-center">
+                                <div class="text-xs font-mono text-slate-400">Effect of +₱1.00 Shock</div>
+                                <div class="text-2xl sm:text-3xl font-mono font-extrabold text-rose-400 mt-1">+2.934</div>
+                                <div class="text-[11px] font-mono text-slate-400 mt-1">CPI Index Points (Peak 3m Lag)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RQ3 Statistical Proof & Summary Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 pt-6 border-t border-slate-800/80">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-teal-500/30">
+                            <div class="text-xs font-mono text-teal-400">Index Elasticity (n = 53)</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">r = 0.8264</div>
+                            <p class="text-xs text-slate-400 mt-1">Spearman <span class="font-mono text-slate-200">ρ = 0.7874</span>, <span class="font-mono text-emerald-400">p &lt; 0.0001</span>, explains <strong class="text-white">68.3%</strong> variance.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-amber-400">Transmission Delay</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">Lag 3m: r = 0.3487</div>
+                            <p class="text-xs text-slate-400 mt-1">Lag 0m is weak (<span class="font-mono">r=0.195, p=0.166</span>); significant at <strong class="text-teal-300">Lag 3m (p=0.0141)</strong> & <strong class="text-teal-300">Lag 4m (p=0.0409)</strong>.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+                            <div class="text-xs font-mono text-rose-400">Asymmetric Stickiness</div>
+                            <div class="text-lg font-mono font-bold text-white mt-1">+0.45% vs +0.41%</div>
+                            <p class="text-xs text-slate-400 mt-1">Food CPI rises in both depreciation (<span class="font-mono">n=30</span>) and appreciation (<span class="font-mono">n=22</span>) months.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 p-4 rounded-xl bg-teal-500/10 border border-teal-500/25 flex flex-col justify-center">
+                        <div class="text-xs font-mono uppercase tracking-wider text-teal-300 font-bold mb-1">Statistical Interpretation & Summary</div>
+                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            Peso depreciation strongly drives composite Food CPI (<span class="font-mono">r = 0.8264, p &lt; 0.0001</span>). Peak MoM price transmission occurs with a <strong class="text-white">2 to 3 month lag</strong> as letters of credit, shipping, and wholesale inventory costs filter into retail markets—with highest sensitivity in imported fruits, vegetables, corn feed, and wheat products.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 7. THE NUTSHELL PLOT SECTION (#nutshell) ================= -->
+    <section id="nutshell" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">Synthesis Visualization • Page 7 of Proposal</div>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+                    The "Nutshell Plot": Macro Driver vs. Regional & Food Response
+                </h2>
+            </div>
+            <span class="text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl">
+                Stacked Shared X-Axis Timeline (2022–2026)
+            </span>
+        </div>
+
+        <div class="portfolio-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 bg-[#0d111a]">
+            <div class="text-center mb-6">
+                <h3 class="font-display text-lg sm:text-2xl font-extrabold text-white">
+                    Peso Depreciation Triggers Nationwide CPI Waves & Delayed Food Spikes Across Philippine Regions (2022–2026)
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                    Comparing the macro exchange rate driver (Panel A) with uniform regional CPI tracks and 3-month lagged Food CPI transmission (Panel B)
+                </p>
+            </div>
+
+            <!-- Stacked Panel A (Driver) -->
+            <div class="bg-[#121622] rounded-2xl p-4 sm:p-5 border border-slate-800/90 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-display font-bold text-sm sm:text-base text-blue-400">
+                        Panel A: Macro Exchange Rate Shock (Driver)
+                    </span>
+                    <span class="text-xs font-mono text-slate-400">Peso YoY Depreciation (%)</span>
+                </div>
+                <div class="relative h-56 sm:h-64 w-full">
+                    <canvas id="nutshellPanelAChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Stacked Panel B (Response) -->
+            <div class="bg-[#121622] rounded-2xl p-4 sm:p-5 border border-slate-800/90">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span class="font-display font-bold text-sm sm:text-base text-pink-400">
+                        Panel B: Regional Uniformity & Delayed Food CPI Reaction (Response)
+                    </span>
+                    <div class="flex flex-wrap items-center gap-3 text-[11px] font-mono">
+                        <span class="text-slate-300">--- Luzon (0.432%)</span>
+                        <span class="text-slate-400">··· Visayas (0.425%)</span>
+                        <span class="text-slate-300">-·- Mindanao (0.437%)</span>
+                        <span class="text-pink-400 font-bold">━ Food CPI (3-Mo Lagged Transmission)</span>
+                    </div>
+                </div>
+                <div class="relative h-64 sm:h-72 w-full">
+                    <canvas id="nutshellPanelBChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Nutshell Narrative Caption (Verbatim synthesis from Page 7) -->
+            <div class="mt-6 p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-sm text-slate-300 leading-relaxed">
+                <strong class="text-white">Nutshell Takeaway:</strong> Peso depreciation is significantly associated with rising national CPI (<span class="font-mono text-pink-400">ρ = 0.572, p &lt; 0.001</span>), while regional CPI growth shows no significant differences across Luzon, Visayas, and Mindanao (<span class="font-mono text-amber-300">p = 0.7408</span>). Food CPI exhibits a delayed pass-through effect, peaking around <strong class="text-teal-300">2–3 months after depreciation</strong>, alongside persistent price increases even during peso appreciation. Overall, exchange rate shocks create nationwide inflationary pressure, with food prices responding gradually and remaining <strong class="text-white">sticky downward</strong> — prices go up relatively easily, but they do not come down as easily when the peso recovers.
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 8. CONCLUSION SECTION (#conclusion) ================= -->
+    <section id="conclusion" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="max-w-4xl">
+            <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-3">Conclusion & Policy Synthesis</div>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
+                Exchange Rate Shocks Are a <span class="highlight-gold">Systemic National Burden</span> With <span class="highlight-teal">3-Month Lagged, Sticky Food Inflation</span>
+            </h2>
+            <div class="dot-divider">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p class="text-slate-300 text-base leading-relaxed">
+                By uniting parametric and non-parametric hypothesis testing across national, regional, and food-sector CPI datasets from 2022 to 2026, our study delivers three actionable empirical conclusions for Philippine macroeconomic policy:
+            </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="portfolio-card rounded-2xl p-6 border-t-2 border-t-pink-500">
+                <div class="w-10 h-10 rounded-xl bg-pink-500/15 text-pink-400 flex items-center justify-center font-mono font-bold mb-4">01</div>
+                <h3 class="font-display font-bold text-lg text-white mb-2">Direct Macroeconomic Pass-Through</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Annual peso depreciation significantly drives up national headline CPI (<span class="font-mono text-slate-200">ρ = 0.5718, r = 0.6037, p &lt; 0.001</span>). Stabilizing foreign exchange volatility is inseparable from domestic price stability.
+                </p>
+            </div>
+
+            <div class="portfolio-card rounded-2xl p-6 border-t-2 border-t-amber-500">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center font-mono font-bold mb-4">02</div>
+                <h3 class="font-display font-bold text-lg text-white mb-2">Nationwide Regional Uniformity</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    During currency depreciation months, CPI growth across Luzon (<span class="font-mono">0.432%</span>), Visayas (<span class="font-mono">0.425%</span>), and Mindanao (<span class="font-mono">0.437%</span>) is statistically indistinguishable (<span class="font-mono text-slate-200">H = 0.5999, p = 0.7408</span>). Anti-inflation relief must be nationwide rather than regionally siloed.
+                </p>
+            </div>
+
+            <div class="portfolio-card rounded-2xl p-6 border-t-2 border-t-teal-500">
+                <div class="w-10 h-10 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center font-mono font-bold mb-4">03</div>
+                <h3 class="font-display font-bold text-lg text-white mb-2">The 90-Day Intervention Window</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Because Food CPI pass-through peaks at a <strong class="text-slate-200">2 to 3 month lag</strong> (<span class="font-mono text-slate-200">r = 0.3487, p = 0.0141</span>) and exhibits downward price stickiness, policymakers have a critical 60-to-90-day window after an FX shock to deploy targeted agricultural and food import buffers before retail prices lock in.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 9. MEET THE TEAM SECTION (#team) ================= -->
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-2">CS 132 • Group 5</div>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+                    Meet the Team
+                </h2>
+                <div class="dot-divider">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <button onclick="openTeamModal()" class="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-500/30 text-xs font-mono font-semibold transition-all">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Customize Group 5 Names & Links</span>
+            </button>
+        </div>
+
+        <!-- Team Member Cards Grid (Inspired by https://overdrivengain.github.io/cs132-portfolio/#team) -->
+        <div id="teamGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Populated dynamically by JS with default CS 132 Group 5 members & editable via Modal -->
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/90 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center font-mono font-bold text-amber-400">₱</div>
+                <div>
+                    <div class="font-display font-bold text-slate-200">CS 132 Data Science Portfolio • Group 5</div>
+                    <div>Philippine Peso Depreciation, Regional CPI & Food Pass-Through Analysis (2022–2026)</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6 font-mono">
+                <a href="#home" class="hover:text-amber-400 transition-colors">Back to Top ↑</a>
+                <a href="#results" class="hover:text-amber-400 transition-colors">EDA Plots</a>
+                <a href="#team" class="hover:text-amber-400 transition-colors">Team</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= CUSTOMIZE TEAM MODAL ================= -->
+    <div id="teamModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div>
+                    <h3 class="font-display font-bold text-lg text-white">Edit CS 132 Group 5 Team Roster</h3>
+                    <p class="text-xs text-slate-400">Update member names, roles, bios, and GitHub/LinkedIn links (saved in your browser).</p>
+                </div>
+                <button onclick="closeTeamModal()" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div id="teamFormContainer" class="space-y-4 my-5"></div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                <button onclick="resetTeamDefaults()" class="text-xs font-mono text-slate-400 hover:text-rose-400">
+                    Reset to Default
+                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="closeTeamModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-mono">Cancel</button>
+                    <button onclick="saveTeamRoster()" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs font-mono">Save Roster</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT: CHARTS, INTERACTIVITY & STATE ================= -->
+    <script>
+        // Set Global Chart.js Defaults for Dark Sleek Portfolio Theme
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+        Chart.defaults.plugins.tooltip.borderColor = 'rgba(245, 158, 11, 0.35)';
+        Chart.defaults.plugins.tooltip.borderWidth = 1;
+        Chart.defaults.plugins.tooltip.padding = 10;
+
+        // ============================================================================
+        // 1. INITIALIZE ALL CHARTS MATCHING THE ATTACHED PDF EXACTLY
+        // ============================================================================
+        function initPortfolioCharts() {
+            // ------------------------------------------------------------------------
+            // RQ 1 - PANEL A: YoY Growth Rates Over Time (Jan 2023 – Jul 2026)
+            // ------------------------------------------------------------------------
+            const rq1Dates = [
+                '2023-01','2023-03','2023-05','2023-07','2023-09','2023-11',
+                '2024-01','2024-03','2024-05','2024-07','2024-09','2024-11',
+                '2025-01','2025-03','2025-05','2025-07','2025-09','2025-11',
+                '2026-01','2026-03','2026-05','2026-07'
+            ];
+            const nationalCPIYoY = [
+                8.5, 7.6, 6.1, 4.3, 5.8, 4.1,
+                2.8, 3.7, 4.1, 4.6, 2.0, 2.5,
+                2.8, 1.8, 1.0, 0.5, 1.1, 1.0,
+                2.0, 4.8, 7.7, 7.0
+            ];
+            const pesoDeprYoY = [
+                7.3, 5.3, 6.4, -1.7, -1.1, -3.2,
+                1.7, 2.0, 3.7, 6.5, -1.3, 5.1,
+                4.3, 2.9, -3.7, -2.9, 2.1, 0.4,
+                1.3, 4.0, 10.5, null
+            ];
+
+            new Chart(document.getElementById('rq1PanelAChart'), {
+                type: 'line',
+                data: {
+                    labels: rq1Dates,
+                    datasets: [
+                        {
+                            label: 'National CPI YoY Inflation (%)',
+                            data: nationalCPIYoY,
+                            borderColor: '#ec4899',
+                            backgroundColor: 'rgba(236, 72, 153, 0.12)',
+                            borderWidth: 2.5,
+                            pointRadius: 3,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Peso YoY Depreciation (%)',
+                            data: pesoDeprYoY,
+                            borderColor: '#a855f7',
+                            backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                            borderDash: [6, 4],
+                            borderWidth: 2.2,
+                            pointStyle: 'triangle',
+                            pointRadius: 3.5,
+                            tension: 0.25
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Annual Percentage Change (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.04)' }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 1 - PANEL B: Correlation Scatter + OLS Trendline (n = 41)
+            // ------------------------------------------------------------------------
+            const rq1ScatterPoints = [
+                {x: -3.9, y: 0.9}, {x: -3.7, y: 1.0}, {x: -3.4, y: 4.9}, {x: -3.2, y: 4.1}, {x: -2.9, y: 0.45},
+                {x: -1.7, y: 4.3}, {x: -1.3, y: 2.0}, {x: -1.1, y: 5.8}, {x: -0.1, y: 4.0}, {x: -0.1, y: 1.0},
+                {x: 0.1, y: 0.75}, {x: 0.4, y: 2.6}, {x: 0.4, y: 1.0}, {x: 0.7, y: 1.6}, {x: 0.8, y: 4.9},
+                {x: 0.9, y: 2.5}, {x: 1.3, y: 2.0}, {x: 1.7, y: 2.9}, {x: 1.8, y: 1.0}, {x: 1.9, y: 3.6},
+                {x: 2.0, y: 3.7}, {x: 2.1, y: 1.2}, {x: 2.3, y: 3.4}, {x: 2.8, y: 1.65}, {x: 2.9, y: 4.1},
+                {x: 3.5, y: 4.3}, {x: 3.6, y: 1.9}, {x: 3.7, y: 4.1}, {x: 4.3, y: 2.8}, {x: 4.3, y: 5.2},
+                {x: 5.0, y: 4.2}, {x: 5.1, y: 2.7}, {x: 5.1, y: 2.5}, {x: 5.3, y: 7.5}, {x: 6.0, y: 7.7},
+                {x: 6.4, y: 5.8}, {x: 6.4, y: 6.4}, {x: 6.5, y: 4.6}, {x: 6.8, y: 8.5}, {x: 7.3, y: 8.5},
+                {x: 10.5, y: 7.2}
+            ];
+
+            new Chart(document.getElementById('rq1PanelBChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Monthly Observations (n = 41)',
+                            data: rq1ScatterPoints,
+                            backgroundColor: 'rgba(192, 132, 252, 0.8)',
+                            borderColor: '#ec4899',
+                            pointRadius: 4.5
+                        },
+                        {
+                            type: 'line',
+                            label: 'OLS Trendline (ρ=0.572, r=0.604)',
+                            data: [{x: -4, y: 1.25}, {x: 10.5, y: 6.95}],
+                            borderColor: '#ec4899',
+                            backgroundColor: 'rgba(236, 72, 153, 0.12)',
+                            borderWidth: 2.5,
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Peso YoY Depreciation (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: {
+                            title: { display: true, text: 'National CPI YoY Inflation (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 2 - PANEL A: CPI MoM Growth Rate by Island Group (Mean vs Median + IQR)
+            // ------------------------------------------------------------------------
+            new Chart(document.getElementById('rq2PanelAChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Luzon (N=240)', 'Visayas (N=120)', 'Mindanao (N=180)'],
+                    datasets: [
+                        {
+                            label: 'Mean MoM CPI Growth (%)',
+                            data: [0.432, 0.425, 0.437],
+                            backgroundColor: ['rgba(59, 130, 246, 0.75)', 'rgba(249, 115, 22, 0.75)', 'rgba(168, 85, 247, 0.75)'],
+                            borderColor: ['#60a5fa', '#fb923c', '#c084fc'],
+                            borderWidth: 1.5,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Median MoM CPI Growth (%)',
+                            data: [0.309, 0.380, 0.254],
+                            backgroundColor: ['rgba(59, 130, 246, 0.25)', 'rgba(249, 115, 22, 0.25)', 'rgba(168, 85, 247, 0.25)'],
+                            borderColor: ['#93c5fd', '#fdba74', '#d8b4fe'],
+                            borderWidth: 1.5,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 0.6,
+                            title: { display: true, text: 'Monthly CPI Growth Rate (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 2 - PANEL B: All 18 Administrative Regions Horizontal Bar Chart
+            // ------------------------------------------------------------------------
+            const regions18 = [
+                'Region VII (Central Visayas)',
+                'Region XI (Davao Region)',
+                'BARMM',
+                'CAR (Cordillera)',
+                'Region IV-A (CALABARZON)',
+                'Region X (Northern Mindanao)',
+                'Region III (Central Luzon)',
+                'MIMAROPA Region',
+                'Region VI (Western Visayas)',
+                'Region I (Ilocos Region)',
+                'National Capital Region (NCR)',
+                'Region XIII (Caraga)',
+                'Region VIII (Eastern Visayas)',
+                'Region XII (SOCCSKSARGEN)',
+                'Region II (Cagayan Valley)',
+                'Negros Island Region (NIR)',
+                'Region IX (Zamboanga Peninsula)',
+                'Region V (Bicol Region)'
+            ];
+            const regionMeans = [
+                0.488, 0.486, 0.484, 0.481, 0.475, 0.473,
+                0.468, 0.443, 0.435, 0.427, 0.423, 0.419,
+                0.402, 0.398, 0.386, 0.379, 0.365, 0.358
+            ];
+
+            new Chart(document.getElementById('rq2PanelBChart'), {
+                type: 'bar',
+                data: {
+                    labels: regions18,
+                    datasets: [{
+                        label: 'Mean Monthly CPI Growth Rate (%) during Peso Depreciation',
+                        data: regionMeans,
+                        backgroundColor: regionMeans.map((_, i) => `hsla(${205 + i * 2}, 70%, ${45 + i * 1.2}%, 0.85)`),
+                        borderColor: 'rgba(148, 163, 184, 0.4)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 0.65,
+                            title: { display: true, text: 'Mean Monthly CPI Growth Rate (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: {
+                            ticks: { font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 3 - PANEL A: Co-Movement USD/PHP vs. National Food CPI (2022–2026)
+            // ------------------------------------------------------------------------
+            const rq3Dates = [
+                'Jan 2022','Apr 2022','Jul 2022','Oct 2022',
+                'Jan 2023','Apr 2023','Jul 2023','Oct 2023',
+                'Jan 2024','Apr 2024','Jul 2024','Oct 2024',
+                'Jan 2025','Apr 2025','Jul 2025','Oct 2025',
+                'Jan 2026','May 2026'
+            ];
+            const usdPhpSeries = [
+                51.3, 52.1, 55.9, 58.8,
+                54.9, 55.4, 54.9, 56.8,
+                56.0, 56.5, 58.6, 56.1,
+                58.4, 57.3, 55.7, 57.2,
+                59.1, 61.3
+            ];
+            const foodCpiSeries = [
+                113.0, 114.2, 118.5, 123.4,
+                127.8, 126.1, 127.4, 130.5,
+                131.2, 131.9, 133.4, 133.1,
+                136.5, 133.9, 134.1, 135.2,
+                139.8, 142.6
+            ];
+
+            new Chart(document.getElementById('rq3PanelAChart'), {
+                type: 'line',
+                data: {
+                    labels: rq3Dates,
+                    datasets: [
+                        {
+                            label: 'USD/PHP Exchange Rate (₱)',
+                            data: usdPhpSeries,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            yAxisID: 'y',
+                            borderWidth: 2.3,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Food CPI Index (2018=100)',
+                            data: foodCpiSeries,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            yAxisID: 'y1',
+                            borderWidth: 2.5,
+                            tension: 0.25
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'USD/PHP Exchange Rate (₱)', color: '#60a5fa' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Food CPI Index (All Categories)', color: '#f87171' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 3 - PANEL B: Exchange Rate Pass-Through Elasticity (n = 53)
+            // ------------------------------------------------------------------------
+            const rq3ElasticityScatter = [
+                {x: 51.3, y: 113.0}, {x: 52.0, y: 113.5}, {x: 52.3, y: 114.2}, {x: 53.6, y: 115.6},
+                {x: 54.8, y: 127.0}, {x: 55.0, y: 128.8}, {x: 55.4, y: 126.1}, {x: 55.6, y: 131.5},
+                {x: 55.8, y: 119.0}, {x: 55.9, y: 117.5}, {x: 56.0, y: 132.1}, {x: 56.2, y: 130.8},
+                {x: 56.5, y: 133.5}, {x: 56.8, y: 130.5}, {x: 57.2, y: 134.8}, {x: 57.4, y: 135.2},
+                {x: 57.7, y: 124.2}, {x: 58.1, y: 136.5}, {x: 58.4, y: 138.8}, {x: 58.6, y: 133.4},
+                {x: 58.8, y: 122.1}, {x: 59.1, y: 139.8}, {x: 60.2, y: 141.5}, {x: 61.3, y: 142.6}
+            ];
+
+            new Chart(document.getElementById('rq3PanelBChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Monthly FX vs. Food CPI (n = 53)',
+                            data: rq3ElasticityScatter,
+                            backgroundColor: '#14b8a6',
+                            pointRadius: 4.5
+                        },
+                        {
+                            type: 'line',
+                            label: 'OLS: CPI = 36.20 + 2.93 FX (R² = 0.683)',
+                            data: [{x: 51, y: 113.5}, {x: 61.8, y: 145.0}],
+                            borderColor: '#f43f5e',
+                            borderWidth: 2.5,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'USD/PHP Average Exchange Rate (₱)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Food CPI (All Categories)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 3 - PANEL C: Dynamic Lag Structure (Lag 0m to Lag 6m)
+            // ------------------------------------------------------------------------
+            const lagLabels = ['Lag 0m\n(p=0.17)', 'Lag 1m\n(p=0.13)', 'Lag 2m\n(p=0.15)', 'Lag 3m*\n(p=0.014)', 'Lag 4m*\n(p=0.041)', 'Lag 5m\n(p=0.56)', 'Lag 6m\n(p=0.22)'];
+            const lagCorrelations = [0.195, 0.210, 0.200, 0.3487, 0.2962, 0.080, 0.180];
+
+            new Chart(document.getElementById('rq3PanelCChart'), {
+                type: 'bar',
+                data: {
+                    labels: lagLabels,
+                    datasets: [{
+                        label: 'Pearson Correlation (r)',
+                        data: lagCorrelations,
+                        backgroundColor: lagCorrelations.map((_, idx) => (idx === 3 || idx === 4) ? '#0d9488' : 'rgba(148, 163, 184, 0.45)'),
+                        borderColor: lagCorrelations.map((_, idx) => (idx === 3 || idx === 4) ? '#2dd4bf' : '#94a3b8'),
+                        borderWidth: 1.5,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 0.42,
+                            title: { display: true, text: 'Pearson Correlation (r)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // RQ 3 - PANEL D: MoM Food Inflation by FX Regime (Stickiness Proof)
+            // ------------------------------------------------------------------------
+            new Chart(document.getElementById('rq3PanelDChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Peso Appreciation\n(MoM ΔFX ≤ 0, n=22)', 'Peso Depreciation\n(MoM ΔFX > 0, n=30)'],
+                    datasets: [
+                        {
+                            label: 'Mean MoM Food CPI Inflation (%)',
+                            data: [0.41, 0.45],
+                            backgroundColor: ['rgba(96, 165, 250, 0.7)', 'rgba(248, 113, 113, 0.7)'],
+                            borderColor: ['#60a5fa', '#f87171'],
+                            borderWidth: 1.5,
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Upper Quartile (Q3 %)',
+                            data: [0.83, 0.91],
+                            backgroundColor: ['rgba(96, 165, 250, 0.25)', 'rgba(248, 113, 113, 0.25)'],
+                            borderColor: ['#93c5fd', '#fca5a5'],
+                            borderWidth: 1.5,
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1.2,
+                            title: { display: true, text: 'MoM Food CPI Inflation (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // ------------------------------------------------------------------------
+            // NUTSHELL PLOT (PAGE 7 OF PDF): PANEL A & PANEL B
+            // ------------------------------------------------------------------------
+            const nutshellTimeline = [
+                '2022-Q1','2022-Q2','2022-Q3','2022-Q4',
+                '2023-Q1','2023-Q2','2023-Q3','2023-Q4',
+                '2024-Q1','2024-Q2','2024-Q3','2024-Q4',
+                '2025-Q1','2025-Q2','2025-Q3','2025-Q4',
+                '2026-Q1','2026-Q2'
+            ];
+            const nutshellDriverFX = [
+                2.5, 4.8, 5.7, 4.6,
+                3.0, 2.5, 0.6, -1.3,
+                -1.8, -1.2, 1.0, 0.3,
+                1.8, 4.3, 4.5, 5.8,
+                3.8, 2.9
+            ];
+
+            new Chart(document.getElementById('nutshellPanelAChart'), {
+                type: 'line',
+                data: {
+                    labels: nutshellTimeline,
+                    datasets: [{
+                        label: 'Peso YoY Depreciation (%)',
+                        data: nutshellDriverFX,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.22)',
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Peso YoY Depr (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.04)' }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('nutshellPanelBChart'), {
+                type: 'line',
+                data: {
+                    labels: nutshellTimeline,
+                    datasets: [
+                        {
+                            label: 'Food CPI (3-Mo Lagged Transmission)',
+                            data: [2.5, 2.2, 4.1, 4.3, 4.4, 3.5, 2.6, 1.8, 1.4, 0.4, 0.8, 2.1, 1.5, 2.4, 4.7, 4.1, 4.7, 3.0],
+                            borderColor: '#ec4899',
+                            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Luzon CPI Growth (0.432% MoM avg)',
+                            data: [2.6, 3.4, 4.0, 4.8, 3.0, 3.6, 2.2, 1.2, 1.3, 0.9, 2.1, 2.2, 2.0, 3.9, 3.2, 4.3, 4.6, 2.9],
+                            borderColor: 'rgba(226, 232, 240, 0.75)',
+                            borderDash: [5, 4],
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Visayas CPI Growth (0.425% MoM avg)',
+                            data: [2.5, 3.2, 3.9, 4.6, 3.1, 3.4, 2.1, 1.3, 1.2, 0.8, 1.9, 2.1, 2.1, 3.8, 3.1, 4.2, 4.5, 2.8],
+                            borderColor: 'rgba(148, 163, 184, 0.65)',
+                            borderDash: [2, 3],
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            tension: 0.25
+                        },
+                        {
+                            label: 'Mindanao CPI Growth (0.437% MoM avg)',
+                            data: [2.6, 3.5, 4.1, 4.9, 2.9, 3.7, 2.3, 1.1, 1.4, 0.9, 2.2, 2.3, 1.9, 4.0, 3.3, 4.4, 4.7, 3.0],
+                            borderColor: 'rgba(203, 213, 225, 0.7)',
+                            borderDash: [8, 3, 2, 3],
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            tension: 0.25
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'CPI Inflation Rate (%)' },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.04)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ============================================================================
+        // 2. EDA TAB FILTERING (VIEW ALL OR SINGLE RQ MODULE)
+        // ============================================================================
+        function filterEDASection(target) {
+            const modules = {
+                rq1: document.getElementById('eda-module-rq1'),
+                rq2: document.getElementById('eda-module-rq2'),
+                rq3: document.getElementById('eda-module-rq3')
+            };
+
+            Object.keys(modules).forEach(key => {
+                if (target === 'all' || target === key) {
+                    modules[key].classList.remove('hidden');
+                } else {
+                    modules[key].classList.add('hidden');
+                }
+            });
+
+            document.querySelectorAll('.eda-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950');
+                btn.classList.add('text-slate-300');
+            });
+            const activeBtn = document.getElementById(`tabBtn-${target}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-300');
+                activeBtn.classList.add('bg-amber-500', 'text-slate-950');
+            }
+        }
+
+        // ============================================================================
+        // 3. INTERACTIVE OLS FOOD CPI PASS-THROUGH SIMULATOR
+        // ============================================================================
+        const fxSlider = document.getElementById('fxSlider');
+        const simCurrentFXLabel = document.getElementById('simCurrentFXLabel');
+        const simPredictedCPI = document.getElementById('simPredictedCPI');
+
+        function updateSimulator() {
+            const fx = parseFloat(fxSlider.value);
+            // Regression Equation from Page 5 of PDF:
+            // Predicted Food CPI = -36.1964 + 2.9340 * Exchange Rate
+            // Note: Page 5 Plot B shows OLS: CPI = -36.20 + 2.93 FX (so at FX=58.5, -36.1964 + 2.934*58.5 = 135.44)
+            const predicted = (-36.1964 + 2.9340 * fx).toFixed(2);
+            simCurrentFXLabel.textContent = `Selected: ₱${fx.toFixed(2)} / USD`;
+            simPredictedCPI.textContent = predicted;
+        }
+        fxSlider.addEventListener('input', updateSimulator);
+
+        // ============================================================================
+        // 4. TEAM ROSTER MANAGEMENT (INSPIRED BY #team ON CS 132 PORTFOLIO)
+        // ============================================================================
+        const defaultTeamRoster = [
+            {
+                name: 'Group 5 Researcher 1',
+                role: 'Macroeconomic & RQ1 Lead',
+                bio: 'Spearheaded national CPI and BSP PHP/USD Year-over-Year data alignment, Shapiro-Wilk diagnostics, and Spearman/OLS correlation modeling.',
+                github: 'https://github.com',
+                linkedin: 'https://linkedin.com',
+                badge: 'RQ1 • National CPI'
+            },
+            {
+                name: 'Group 5 Researcher 2',
+                role: 'Spatial & Regional Analysis Lead',
+                bio: 'Engineered the 18-region and 3-island-group pipeline (N=540 depreciation observations), Kruskal-Wallis H-tests, and regional error-bar visualizations.',
+                github: 'https://github.com',
+                linkedin: 'https://linkedin.com',
+                badge: 'RQ2 • 18 Regions'
+            },
+            {
+                name: 'Group 5 Researcher 3',
+                role: 'Food Pass-Through & Lag Modeler',
+                bio: 'Built the 13-subcategory composite Food CPI index, dynamic lag correlation structure (Lag 0m–6m), and downward price stickiness regime tests.',
+                github: 'https://github.com',
+                linkedin: 'https://linkedin.com',
+                badge: 'RQ3 • Food Lag'
+            },
+            {
+                name: 'Group 5 Researcher 4',
+                role: 'Data Visualization & Portfolio Lead',
+                bio: 'Designed the stacked Nutshell synthesis plot, statistical storytelling narrative, and interactive web portfolio architecture for CS 132.',
+                github: 'https://github.com',
+                linkedin: 'https://linkedin.com',
+                badge: 'Synthesis & UI'
+            }
+        ];
+
+        function getTeamRoster() {
+            try {
+                const saved = localStorage.getItem('cs132_group5_team');
+                return saved ? JSON.parse(saved) : defaultTeamRoster;
+            } catch (e) {
+                return defaultTeamRoster;
+            }
+        }
+
+        function renderTeamCards() {
+            const roster = getTeamRoster();
+            const grid = document.getElementById('teamGrid');
+            const avatarColors = [
+                'from-amber-500 to-rose-500',
+                'from-rose-500 to-purple-600',
+                'from-teal-400 to-indigo-600',
+                'from-indigo-500 to-amber-500'
+            ];
+
+            grid.innerHTML = roster.map((member, i) => {
+                const initials = member.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+                return `
+                    <div class="portfolio-card rounded-2xl p-6 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br ${avatarColors[i % avatarColors.length]} p-[2px] shadow-lg">
+                                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-display font-extrabold text-lg text-white">
+                                        ${initials}
+                                    </div>
+                                </div>
+                                <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-amber-300">
+                                    ${member.badge}
+                                </span>
+                            </div>
+
+                            <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors">
+                                ${member.name}
+                            </h3>
+                            <div class="text-xs font-mono text-teal-400 mt-0.5 mb-3">${member.role}</div>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                ${member.bio}
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-slate-400">
+                            <span class="text-[11px] font-mono text-slate-500">UP Diliman • CS 132</span>
+                            <div class="flex items-center gap-3 text-sm">
+                                <a href="${member.github}" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                                <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors" title="LinkedIn">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openTeamModal() {
+            const roster = getTeamRoster();
+            const container = document.getElementById('teamFormContainer');
+            container.innerHTML = roster.map((m, idx) => `
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                    <div class="text-xs font-mono text-amber-400 font-bold">Member 0${idx + 1}</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-[11px] font-mono text-slate-400">Full Name</label>
+                            <input type="text" id="team-name-${idx}" value="${m.name}" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="text-[11px] font-mono text-slate-400">Role / Title</label>
+                            <input type="text" id="team-role-${idx}" value="${m.role}" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-mono text-slate-400">Contribution Bio</label>
+                        <textarea id="team-bio-${idx}" rows="2" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white">${m.bio}</textarea>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('teamModal').classList.remove('hidden');
+        }
+
+        function closeTeamModal() {
+            document.getElementById('teamModal').classList.add('hidden');
+        }
+
+        function saveTeamRoster() {
+            const roster = getTeamRoster();
+            const updated = roster.map((m, idx) => ({
+                ...m,
+                name: document.getElementById(`team-name-${idx}`).value || m.name,
+                role: document.getElementById(`team-role-${idx}`).value || m.role,
+                bio: document.getElementById(`team-bio-${idx}`).value || m.bio
+            }));
+            try {
+                localStorage.setItem('cs132_group5_team', JSON.stringify(updated));
+            } catch (e) {}
+            renderTeamCards();
+            closeTeamModal();
+        }
+
+        function resetTeamDefaults() {
+            try {
+                localStorage.removeItem('cs132_group5_team');
+            } catch (e) {}
+            renderTeamCards();
+            closeTeamModal();
+        }
+
+        // ============================================================================
+        // 5. MOBILE MENU & SCROLLSPY ACTIVE LINKS
+        // ============================================================================
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        window.addEventListener('onload', () => {});
+        window.onload = function () {
+            initPortfolioCharts();
+            updateSimulator();
+            renderTeamCards();
+        };
+    </script>
 </body>
 </html>
