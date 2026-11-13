@@ -181,9 +181,12 @@
                         <span class="font-mono font-bold text-lg text-amber-400 group-hover:scale-110 transition-transform">₱</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <!-- FIX: Wrapped in flex row with whitespace-nowrap -->
+                <div class="flex items-center gap-2 whitespace-nowrap">
                     <span class="font-display font-extrabold tracking-tight text-white text-sm sm:text-base">CS 132</span>
-                    <span class="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold text-center inline-flex items-center justify-center">Group 5</span>
+                    <span class="text-[11px] font-mono uppercase px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold text-center inline-flex items-center gap-1 whitespace-nowrap">
+                        <span>Group</span> <span>5</span>
+                    </span>
                 </div>
             </a>
 
@@ -194,6 +197,7 @@
                 <a href="#background" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Background</a>
                 <a href="#questions" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Research Questions</a>
                 <a href="#methods" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Data & Methods</a>
+                <a href="#dataset" class="nav-link text-center justify-center items-center hover:text-emerald-400 transition-colors px-2 py-1">Dataset</a>
                 <a href="#results" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Results & EDA</a>
                 <a href="#nutshell" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Nutshell Plot</a>
                 <a href="#conclusion" class="nav-link text-center justify-center items-center hover:text-amber-400 transition-colors px-2 py-1">Conclusion</a>
@@ -220,6 +224,7 @@
             <a href="#background" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Background</a>
             <a href="#questions" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Research Questions & Hypotheses</a>
             <a href="#methods" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Data & Methods</a>
+            <a href="#dataset" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-emerald-400 font-medium">Dataset</a>
             <a href="#results" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Results & Interactive EDA</a>
             <a href="#nutshell" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Nutshell Plot</a>
             <a href="#conclusion" class="mobile-link flex items-center justify-center text-center px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Conclusion</a>
@@ -259,6 +264,11 @@
                     <span>Explore EDA & Findings</span>
                     <i class="fa-solid fa-arrow-down"></i>
                 </a>
+                <a href="https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?gid=1086687753#gid=1086687753" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/35 font-medium text-sm transition-all">
+                    <i class="fa-solid fa-table text-emerald-400"></i>
+                    <span>Access Dataset (Google Sheets)</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-80"></i>
+                </a><div class="portfolio-card rounded-2xl p-6">
                 <a href="#questions" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-medium text-sm transition-all">
                     <i class="fa-solid fa-flask text-amber-400"></i>
                     <span>View Hypotheses & Tests</span>
@@ -363,6 +373,8 @@
                 </div>
             </div>
         </div>
+        
+
     </section>
 
     <!-- ================= 3. BACKGROUND SECTION (#background) ================= -->
@@ -682,6 +694,68 @@
                                 <div>Predicted Food CPI = 36.1964 + 2.9340 × Exchange Rate &nbsp;(R² = 0.6830)</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DATASET & OPEN ACCESS SECTION (#dataset) ================= -->
+    <section id="dataset" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="portfolio-card rounded-3xl p-6 sm:p-10 border border-emerald-500/30 bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-emerald-950/30">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Left Info -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                        <i class="fa-solid fa-database"></i>
+                        <span>COMPILED PANEL DATASET • GOOGLE SHEETS</span>
+                    </div>
+
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+                        Explore the Master <span class="highlight-teal">PSA & BSP Merged Dataset</span>
+                    </h2>
+
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                        Inspect the complete monthly time-series and regional panel data used in our statistical tests—covering <strong class="text-white">PHP/USD exchange rates</strong>, <strong class="text-white">National & Regional CPI (2018=100)</strong> across all 18 administrative regions, and <strong class="text-white">13 Food CPI subcategories</strong> from 2022 to 2026.
+                    </p>
+
+                    <!-- Metadata Tags -->
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <span class="px-3 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-300">
+                            <i class="fa-regular fa-calendar text-emerald-400 mr-1.5"></i>Jan 2022 – Aug 2026
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-300">
+                            <i class="fa-solid fa-map-pin text-amber-400 mr-1.5"></i>18 PH Regions
+                        </span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-300">
+                            <i class="fa-solid fa-bowl-rice text-rose-400 mr-1.5"></i>13 Food Categories
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Action Box -->
+                <div class="lg:col-span-5">
+                    <div class="p-6 rounded-2xl bg-slate-950/85 border border-slate-800 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold text-white text-sm sm:text-base">CS 132 Group 5 Master Dataset</div>
+                                <div class="text-xs font-mono text-slate-400">Google Sheets • Viewable Online</div>
+                            </div>
+                        </div>
+
+                        <a href="https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?gid=1086687753#gid=1086687753" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all">
+                            <i class="fa-solid fa-table"></i>
+                            <span>Open Dataset in Google Sheets</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+
+                        <button onclick="copyDatasetLink(this)" type="button" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700/80 text-xs font-mono transition-all">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Spreadsheet Link</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1924,6 +1998,20 @@
             simPredictedCPI.textContent = predicted;
         }
         fxSlider.addEventListener('input', updateSimulator);
+
+        // ============================================================================
+        // COPY DATASET LINK HELPER
+        // ============================================================================
+        function copyDatasetLink(btn) {
+            const url = 'https://docs.google.com/spreadsheets/d/1i99Bemko9PFc5m37haZ770oq_fM5gHvKhL9qPdGplds/edit?gid=1086687753#gid=1086687753';
+            navigator.clipboard.writeText(url).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i><span class="text-emerald-300">Link Copied!</span>';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
 
         // ============================================================================
         // 5. MOBILE MENU & SCROLLSPY ACTIVE LINKS
